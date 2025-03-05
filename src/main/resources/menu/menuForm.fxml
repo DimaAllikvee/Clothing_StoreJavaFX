@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.VBox?>
+
+<?import java.net.URL?>
+<VBox fx:id="vbMenuFormRoot" prefHeight="45.0" prefWidth="599.0"
+      xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ee.ivkhkdev.Clothing_StoreJavaFX.controller.MenuFormController"
+      styleClass="menu-root">
+
+    <!-- Подключаем CSS-файл -->
+    <stylesheets>
+        <URL value="@../css/menu.css"/>
+    </stylesheets>
+
+    <children>
+        <MenuBar styleClass="menu-bar">
+            <menus>
+                <Menu fx:id="mClothing" mnemonicParsing="false" text="Товары" styleClass="menu-item">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#showAddClothingForm" text="Добавить модель" styleClass="menu-item-sub"/>
+                        <MenuItem mnemonicParsing="false" onAction="#showAddBrandForm" text="Добавить бренд" styleClass="menu-item-sub"/>
+                        <MenuItem mnemonicParsing="false" text="Список моделей" styleClass="menu-item-sub"/>
+                    </items>
+                </Menu>
+                <Menu fx:id="mUsers" mnemonicParsing="false" text="Пользователь" styleClass="menu-item">
+                    <items>
+                        <MenuItem fx:id="miEnter" mnemonicParsing="false" onAction="#showLoginForm" text="Вход" styleClass="menu-item-sub"/>
+                        <MenuItem fx:id="miLogout" mnemonicParsing="false" onAction="#logout" text="Выход" styleClass="menu-item-sub"/>
+                        <MenuItem fx:id="miProfile" mnemonicParsing="false" text="Профиль" styleClass="menu-item-sub"/>
+                    </items>
+                </Menu>
+                <Menu fx:id="mAdmin" mnemonicParsing="false" text="Administrator" styleClass="menu-item"/>
+            </menus>
+        </MenuBar>
+        <Label alignment="CENTER" prefHeight="17.0" prefWidth="600.0" styleClass="menu-info"/>
+    </children>
+</VBox>
