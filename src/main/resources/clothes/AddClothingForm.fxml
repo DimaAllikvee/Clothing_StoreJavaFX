@@ -1,14 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="clothes.AddClothingForm"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<VBox fx:id="vbClothingFormRoot" prefHeight="379.0" prefWidth="628.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ee.ivkhkdev.Clothing_StoreJavaFX.controller.ClothingFormController">
+    <children>
+        <Label alignment="CENTER" prefHeight="89.0" prefWidth="600.0" text="Новая модель одежды">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <!-- Поле для ввода названия -->
+        <HBox prefHeight="28.0" prefWidth="600.0">
+            <children>
+                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="161.0" text="Название">
+                    <HBox.margin>
+                        <Insets right="10.0" />
+                    </HBox.margin>
+                </Label>
+                <TextField fx:id="tfName" prefHeight="25.0" prefWidth="308.0" />
+            </children>
+        </HBox>
+        <!-- Поле для выбора брэнда -->
+        <HBox prefHeight="28.0" prefWidth="600.0">
+            <children>
+                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="161.0" text="Брэнд">
+                    <HBox.margin>
+                        <Insets right="10.0" />
+                    </HBox.margin>
+                </Label>
+                <ComboBox fx:id="cbBrand" prefHeight="25.0" prefWidth="308.0" promptText="Выберите брэнд" />
+            </children>
+        </HBox>
+        <!-- Поле для ввода размера -->
+        <HBox prefHeight="28.0" prefWidth="600.0">
+            <children>
+                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="161.0" text="Размер">
+                    <HBox.margin>
+                        <Insets right="10.0" />
+                    </HBox.margin>
+                </Label>
+                <TextField fx:id="tfSize" prefHeight="25.0" prefWidth="174.0" />
+            </children>
+        </HBox>
+        <!-- Поле для ввода количества -->
+        <HBox prefHeight="28.0" prefWidth="600.0">
+            <children>
+                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="161.0" text="Количество">
+                    <HBox.margin>
+                        <Insets right="10.0" />
+                    </HBox.margin>
+                </Label>
+                <TextField fx:id="tfQuantity" prefHeight="25.0" prefWidth="76.0" />
+            </children>
+        </HBox>
+      <HBox prefHeight="28.0" prefWidth="600.0">
+         <children>
+            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="161.0" text="Цена">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="tfPrice" prefHeight="25.0" prefWidth="76.0" />
+         </children>
+      </HBox>
+        <!-- Кнопки управления -->
+        <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="600.0" spacing="5.0">
+            <children>
+                <!-- Пустой Label для выравнивания -->
+                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="155.0">
+                    <HBox.margin>
+                        <Insets right="10.0" />
+                    </HBox.margin>
+                </Label>
+                <Button mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="125.0" text="Добавить" />
+                <Button mnemonicParsing="false" onAction="#goToMainForm" text="Возврат на главную" />
+            </children>
+        </HBox>
+    </children>
+    <padding>
+        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+    </padding>
+</VBox>

@@ -2,8 +2,8 @@ package ee.ivkhkdev.Clothing_StoreJavaFX.controller;
 
 
 
-import ee.ivkhkdev.Clothing_StoreJavaFX.service.AppCustomerService;
-import ee.ivkhkdev.Clothing_StoreJavaFX.service.FormService;
+import ee.ivkhkdev.Clothing_StoreJavaFX.service.AppCustomerServiceImpl;
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Menu;
@@ -17,56 +17,56 @@ import java.util.ResourceBundle;
 @Component
 public class MenuFormController implements Initializable {
 
-    private final FormService formService;
+    private final FormLoader formLoader;
 
-    @FXML private Menu mClothing;       // Меню для одежды (ранее mBooks)
+    @FXML private Menu mClothing;
     @FXML private Menu mAdmin;
     @FXML private Menu mUsers;
     @FXML private MenuItem miEnter;
     @FXML private MenuItem miProfile;
     @FXML private MenuItem miLogout;
 
-    public MenuFormController(FormService formService) {
-        this.formService = formService;
+    public MenuFormController(FormLoader formLoader) {
+        this.formLoader = formLoader;
     }
 
     @FXML
     private void showAddClothingForm(){
-        //    formService.loadNewClothingForm();
+         formLoader.showAddClothingForm();
     }
 
     @FXML
     private void showAddBrandForm() {
-       // formService.loadBrandForm();
+       formLoader.showAddBrandForm();
     }
 
     @FXML
     private void showLoginForm(){
-        formService.loadLoginForm();
+        formLoader.loadLoginForm();
     }
 
     @FXML
     private void logout(){
      //   AppUserService.currentUser = null;
-        formService.loadLoginForm();
+        formLoader.loadLoginForm();
     }
 
     private void initMenuVisible(){
-        if (AppCustomerService.currentCustomer.getRoles().contains(AppCustomerService.ROLES.ADMINISTRATOR.toString())) {
+        if (AppCustomerServiceImpl.currentCustomer.getRoles().contains(AppCustomerServiceImpl.ROLES.ADMINISTRATOR.toString())) {
             mClothing.setVisible(true);
             mAdmin.setVisible(true);
             mUsers.setVisible(true);
             miEnter.setVisible(false);
             miProfile.setVisible(true);
             miLogout.setVisible(true);
-        } else if (AppCustomerService.currentCustomer.getRoles().contains(AppCustomerService.ROLES.MANAGER.toString())) {
+        } else if (AppCustomerServiceImpl.currentCustomer.getRoles().contains(AppCustomerServiceImpl.ROLES.MANAGER.toString())) {
             mClothing.setVisible(true);
             mAdmin.setVisible(false);
             mUsers.setVisible(true);
             miEnter.setVisible(false);
             miProfile.setVisible(true);
             miLogout.setVisible(true);
-        } else if (AppCustomerService.currentCustomer.getRoles().contains(AppCustomerService.ROLES.USER.toString())) {
+        } else if (AppCustomerServiceImpl.currentCustomer.getRoles().contains(AppCustomerServiceImpl.ROLES.USER.toString())) {
             mClothing.setVisible(false);
             mAdmin.setVisible(false);
             mUsers.setVisible(true);

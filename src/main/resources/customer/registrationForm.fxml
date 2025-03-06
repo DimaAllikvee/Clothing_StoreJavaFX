@@ -8,8 +8,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 <?import java.net.URL?>
+
 <VBox xmlns="http://javafx.com/javafx/23.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="ee.ivkhkdev.Clothing_StoreJavaFX.controller.RegistrationFormController"
@@ -17,19 +17,19 @@
       prefWidth="520" prefHeight="293"
       styleClass="register-root">
 
-    <!-- Подключение CSS-файла (находится в папке resources/css/):
-         Если ваш FXML лежит в папке resources/main/, то @../css/registration.css
-         означает, что css/ лежит на уровень выше. Корректируйте путь при необходимости. -->
     <stylesheets>
         <URL value="@../css/registration.css"/>
     </stylesheets>
 
-    <!-- Заголовок формы -->
+
     <Label text="Регистрация пользователя" styleClass="register-title">
         <font>
             <Font size="22.0" />
         </font>
     </Label>
+
+    <!-- Метка для вывода сообщений об ошибке -->
+    <Label fx:id="lbInfo" text="" styleClass="register-info" />
 
     <!-- Основной контейнер для полей (GridPane) -->
     <GridPane alignment="CENTER" hgap="10" vgap="10" styleClass="register-form-box">

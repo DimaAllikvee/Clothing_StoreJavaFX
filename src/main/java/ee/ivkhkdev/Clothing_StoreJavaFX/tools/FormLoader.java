@@ -1,7 +1,6 @@
-package ee.ivkhkdev.Clothing_StoreJavaFX.service;
+package ee.ivkhkdev.Clothing_StoreJavaFX.tools;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.ClothingStoreApp;
-import ee.ivkhkdev.Clothing_StoreJavaFX.tools.SpringFXMLLoader;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,12 +13,12 @@ import java.io.IOException;
 
 
 @Service
-public class FormService {
+public class FormLoader {
 
     private final SpringFXMLLoader springFXMLLoader;
 
     @Autowired
-    public FormService(SpringFXMLLoader springFXMLLoader) {
+    public FormLoader(SpringFXMLLoader springFXMLLoader) {
         this.springFXMLLoader = springFXMLLoader;
     }
 
@@ -53,7 +52,7 @@ public class FormService {
         Scene scene = new Scene(root);
         Stage primaryStage = getPrimaryStage();
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Nptv23JavaFX Библиотека");
+        primaryStage.setTitle("Clothing_StoreJavaFX магазин верхней одежды");
         primaryStage.centerOnScreen();
         primaryStage.show();
     }
@@ -71,6 +70,7 @@ public class FormService {
         getPrimaryStage().setTitle("Создание нового пользователя");
     }
 
+
     public Parent loadMenuForm(){
         FXMLLoader fxmlLoader = springFXMLLoader.load("/menu/menuForm.fxml");
         try {
@@ -79,5 +79,38 @@ public class FormService {
             throw new RuntimeException(e);
         }
     }
+
+    public void showAddClothingForm() {
+        FXMLLoader fxmlLoader = springFXMLLoader.load("/clothes/AddClothingForm.fxml");
+        Parent root;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException("Не удалось загрузить /clothes/newClothingForm.fxml", e);
+        }
+        Scene scene = new Scene(root);
+        Stage primaryStage = getPrimaryStage();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Добавление новой модели одежды");
+        primaryStage.centerOnScreen();
+        primaryStage.show();
+    }
+
+    public void showAddBrandForm() {
+        FXMLLoader fxmlLoader = springFXMLLoader.load("/clothes/AddBrandForm.fxml");
+        Parent root;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException("Не удалось загрузить /clothes/AddBrandForm.fxml", e);
+        }
+        Scene scene = new Scene(root);
+        Stage primaryStage = getPrimaryStage();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Добавление нового бренда");
+        primaryStage.centerOnScreen();
+        primaryStage.show();
+    }
+
 }
 

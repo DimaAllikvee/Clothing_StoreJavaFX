@@ -6,16 +6,17 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-
 @Service
-public class AppCustomerService {
+public class AppCustomerServiceImpl {
     public static Customer currentCustomer;
-    public enum ROLES{
+
+    public enum ROLES {
         USER, MANAGER, ADMINISTRATOR
     }
-    private CustomerRepository repository;
 
-    public AppCustomerService(CustomerRepository repository) {
+    private final CustomerRepository repository;
+
+    public AppCustomerServiceImpl(CustomerRepository repository) {
         this.repository = repository;
         initSuperUser();
     }
@@ -34,9 +35,15 @@ public class AppCustomerService {
         admin.getRoles().add(ROLES.USER.toString());
         repository.save(admin);
     }
+
+    // Метод add с проверкой на существование пользователя по логину
     public void add(Customer user) {
+        if (repository.existsByUsername(user.getUsername())) {
+            throw new IllegalArgumentException("Пользователь с логином '" + user.getUsername() + "' уже существует");
+        }
         repository.save(user);
     }
+
     public boolean authentication(String username, String password) {
         Optional<Customer> optionalAppUser = repository.findByUsername(username);
         if(optionalAppUser.isEmpty()) {
@@ -49,5 +56,4 @@ public class AppCustomerService {
         currentCustomer = loginUser;
         return true;
     }
-
 }

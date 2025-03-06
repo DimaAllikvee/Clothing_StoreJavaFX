@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="clothes.AddBrandForm"
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ee.ivkhkdev.Clothing_StoreJavaFX.controller.AddBrandFormController"
             prefHeight="400.0" prefWidth="600.0">
-
+    <children>
+        <VBox alignment="CENTER" spacing="15" AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0"
+              AnchorPane.rightAnchor="10.0" AnchorPane.bottomAnchor="10.0" styleClass="brand-root">
+            <children>
+                <Label text="Добавление бренда" styleClass="brand-title"/>
+                <!-- Список доступных брендов -->
+                <ListView fx:id="lvBrands" prefHeight="200.0" prefWidth="580.0" styleClass="brand-list"/>
+                <!-- Поле для ввода нового бренда и кнопка -->
+                <VBox spacing="10">
+                    <children>
+                        <TextField fx:id="tfNewBrand" promptText="Введите название бренда" styleClass="brand-field"/>
+                        <Button text="Добавить бренд" onAction="#addBrand" styleClass="brand-add-button"/>
+                    </children>
+                </VBox>
+                <!-- Кнопка возврата на главную форму -->
+                <Button text="Возврат на главную" onAction="#goToMainForm" styleClass="brand-return-button"/>
+            </children>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </VBox>
+    </children>
 </AnchorPane>

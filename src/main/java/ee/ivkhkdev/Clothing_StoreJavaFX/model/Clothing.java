@@ -13,7 +13,7 @@ public class Clothing {
     private Long id;
 
     private String name;
-    private String type;
+    private String brand;
     private String size;
     private String color;
     private double price;
@@ -23,9 +23,9 @@ public class Clothing {
     public Clothing() {}
 
 
-    public Clothing(String name, String type, String size, String color, double price, int quantity, int inStock) {
+    public Clothing(String name, String brand, String size, String color, double price, int quantity, int inStock) {
         this.name = name;
-        this.type = type;
+        this.brand = brand;
         this.size = size;
         this.color = color;
         this.price = price;
@@ -50,12 +50,12 @@ public class Clothing {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setBrand(String type) {
+        this.brand = type;
     }
 
     public String getSize() {
@@ -105,7 +105,7 @@ public class Clothing {
         return "Clothing{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", type='" + type + '\'' +
+                ", type='" + brand + '\'' +
                 ", size='" + size + '\'' +
                 ", color='" + color + '\'' +
                 ", price=" + price +

@@ -16,7 +16,7 @@
       alignment="CENTER" spacing="15" styleClass="login-root"
       prefWidth="550" prefHeight="300">
 
-    <!-- Подключение CSS (путь к login.css в папке /css/ внутри ресурсов) -->
+
     <stylesheets>
         <URL value="@../css/login.css"/>
     </stylesheets>
