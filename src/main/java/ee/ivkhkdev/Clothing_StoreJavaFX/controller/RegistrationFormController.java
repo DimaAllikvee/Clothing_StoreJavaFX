@@ -24,7 +24,7 @@ public class RegistrationFormController {
     @FXML
     private PasswordField pfPassword;
     @FXML
-    private Label lbInfo; // Label для вывода сообщений об ошибке
+    private Label lbInfo;
 
     public RegistrationFormController(AppCustomerServiceImpl appCustomerServiceImpl, FormLoader formLoader) {
         this.appCustomerServiceImpl = appCustomerServiceImpl;

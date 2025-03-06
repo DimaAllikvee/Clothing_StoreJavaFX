@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -34,6 +33,5 @@
                 <Menu fx:id="mAdmin" mnemonicParsing="false" styleClass="menu-item" text="Administrator" />
             </menus>
         </MenuBar>
-        <Label alignment="CENTER" prefHeight="17.0" prefWidth="600.0" styleClass="menu-info" />
     </children>
 </VBox>

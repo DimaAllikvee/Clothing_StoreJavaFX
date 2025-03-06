@@ -69,7 +69,7 @@ public class MainFormController implements Initializable {
         tcInStock.setCellValueFactory(new PropertyValueFactory<>("inStock"));
         tcPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-        // Устанавливаем список одежды, полученный из сервиса, в таблицу
+
         tvClothingList.setItems(clothingService.getListClothing());
     }
 

@@ -5,86 +5,64 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="vbClothingFormRoot" prefHeight="379.0" prefWidth="628.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ee.ivkhkdev.Clothing_StoreJavaFX.controller.ClothingFormController">
-    <children>
-        <Label alignment="CENTER" prefHeight="89.0" prefWidth="600.0" text="Новая модель одежды">
-            <font>
-                <Font size="18.0" />
-            </font>
-        </Label>
-        <!-- Поле для ввода названия -->
-        <HBox prefHeight="28.0" prefWidth="600.0">
-            <children>
-                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="161.0" text="Название">
-                    <HBox.margin>
-                        <Insets right="10.0" />
-                    </HBox.margin>
-                </Label>
-                <TextField fx:id="tfName" prefHeight="25.0" prefWidth="308.0" />
-            </children>
-        </HBox>
-        <!-- Поле для выбора брэнда -->
-        <HBox prefHeight="28.0" prefWidth="600.0">
-            <children>
-                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="161.0" text="Брэнд">
-                    <HBox.margin>
-                        <Insets right="10.0" />
-                    </HBox.margin>
-                </Label>
-                <ComboBox fx:id="cbBrand" prefHeight="25.0" prefWidth="308.0" promptText="Выберите брэнд" />
-            </children>
-        </HBox>
-        <!-- Поле для ввода размера -->
-        <HBox prefHeight="28.0" prefWidth="600.0">
-            <children>
-                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="161.0" text="Размер">
-                    <HBox.margin>
-                        <Insets right="10.0" />
-                    </HBox.margin>
-                </Label>
-                <TextField fx:id="tfSize" prefHeight="25.0" prefWidth="174.0" />
-            </children>
-        </HBox>
-        <!-- Поле для ввода количества -->
-        <HBox prefHeight="28.0" prefWidth="600.0">
-            <children>
-                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="161.0" text="Количество">
-                    <HBox.margin>
-                        <Insets right="10.0" />
-                    </HBox.margin>
-                </Label>
-                <TextField fx:id="tfQuantity" prefHeight="25.0" prefWidth="76.0" />
-            </children>
-        </HBox>
-      <HBox prefHeight="28.0" prefWidth="600.0">
-         <children>
-            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="161.0" text="Цена">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin>
-            </Label>
-            <TextField fx:id="tfPrice" prefHeight="25.0" prefWidth="76.0" />
-         </children>
-      </HBox>
-        <!-- Кнопки управления -->
-        <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="600.0" spacing="5.0">
-            <children>
-                <!-- Пустой Label для выравнивания -->
-                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="155.0">
-                    <HBox.margin>
-                        <Insets right="10.0" />
-                    </HBox.margin>
-                </Label>
-                <Button mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="125.0" text="Добавить" />
-                <Button mnemonicParsing="false" onAction="#goToMainForm" text="Возврат на главную" />
-            </children>
-        </HBox>
-    </children>
+<?import javafx.scene.layout.HBox?>
+<?import java.net.URL?>
+<VBox fx:id="vbClothingFormRoot" prefHeight="380.0" prefWidth="630.0"
+      xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ee.ivkhkdev.Clothing_StoreJavaFX.controller.ClothingFormController"
+      alignment="CENTER" spacing="20" styleClass="addclothing-root">
+
+    <!-- Подключаем CSS-файл -->
+    <stylesheets>
+        <URL value="@../css/addClothing.css"/>
+    </stylesheets>
+
+    <!-- Заголовок формы -->
+    <Label text="Новая модель одежды" styleClass="addclothing-title">
+        <font>
+            <Font size="20.0"/>
+        </font>
+    </Label>
+
+    <!-- Основной контейнер для полей ввода с использованием GridPane для симметрии -->
+    <GridPane hgap="15" vgap="15" alignment="CENTER" styleClass="addclothing-grid">
+        <padding>
+            <Insets top="10" right="20" bottom="10" left="20"/>
+        </padding>
+        <!-- Название -->
+        <Label text="Название:" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="addclothing-label"/>
+        <TextField fx:id="tfName" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="addclothing-field"/>
+
+        <!-- Брэнд (ComboBox для выбора) -->
+        <Label text="Брэнд:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="addclothing-label"/>
+        <ComboBox fx:id="cbBrand" promptText="Выберите брэнд" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="addclothing-field"/>
+
+        <!-- Размер -->
+        <Label text="Размер:" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="addclothing-label"/>
+        <TextField fx:id="tfSize" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="addclothing-field"/>
+
+        <!-- Количество -->
+        <Label text="Количество:" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="addclothing-label"/>
+        <TextField fx:id="tfQuantity" GridPane.rowIndex="3" GridPane.columnIndex="1" styleClass="addclothing-field"/>
+
+        <!-- Цена -->
+        <Label text="Цена:" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="addclothing-label"/>
+        <TextField fx:id="tfPrice" GridPane.rowIndex="4" GridPane.columnIndex="1" styleClass="addclothing-field"/>
+    </GridPane>
+
+    <!-- Блок с кнопками -->
+    <HBox spacing="20" alignment="CENTER" styleClass="addclothing-buttons">
+        <Button text="Добавить" onAction="#add" styleClass="addclothing-button"/>
+        <Button text="Возврат на главную" onAction="#goToMainForm" styleClass="addclothing-button"/>
+    </HBox>
+
+    <!-- Общие отступы у корневого контейнера -->
     <padding>
-        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+        <Insets top="20" right="30" bottom="30" left="30"/>
     </padding>
 </VBox>

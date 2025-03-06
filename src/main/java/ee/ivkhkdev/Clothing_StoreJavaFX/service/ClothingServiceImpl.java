@@ -21,7 +21,6 @@ public class ClothingServiceImpl implements ClothingService {
 
     @Override
     public Optional<Clothing> add(Clothing clothing) {
-        // Сохраняем одежду и возвращаем её в Optional
         return Optional.of(clothingRepository.save(clothing));
     }
 

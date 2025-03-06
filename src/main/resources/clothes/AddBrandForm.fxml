@@ -8,25 +8,34 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import java.net.URL?>
 <AnchorPane xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="ee.ivkhkdev.Clothing_StoreJavaFX.controller.AddBrandFormController"
             prefHeight="400.0" prefWidth="600.0">
+
+    <!-- Подключаем CSS -->
+    <stylesheets>
+        <URL value="@../css/addBrand.css"/>
+    </stylesheets>
+
     <children>
-        <VBox alignment="CENTER" spacing="15" AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0"
-              AnchorPane.rightAnchor="10.0" AnchorPane.bottomAnchor="10.0" styleClass="brand-root">
+        <VBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20"
+              AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="20" styleClass="brand-root">
             <children>
+                <!-- Заголовок -->
                 <Label text="Добавление бренда" styleClass="brand-title"/>
-                <!-- Список доступных брендов -->
+
+                <!-- Список добавленных брендов -->
                 <ListView fx:id="lvBrands" prefHeight="200.0" prefWidth="580.0" styleClass="brand-list"/>
-                <!-- Поле для ввода нового бренда и кнопка -->
-                <VBox spacing="10">
-                    <children>
-                        <TextField fx:id="tfNewBrand" promptText="Введите название бренда" styleClass="brand-field"/>
-                        <Button text="Добавить бренд" onAction="#addBrand" styleClass="brand-add-button"/>
-                    </children>
+
+                <!-- Блок ввода нового бренда -->
+                <VBox spacing="10" styleClass="brand-input-container">
+                    <TextField fx:id="tfNewBrand" promptText="Введите название бренда" styleClass="brand-field"/>
+                    <Button text="Добавить бренд" onAction="#addBrand" styleClass="brand-add-button"/>
                 </VBox>
-                <!-- Кнопка возврата на главную форму -->
+
+                <!-- Кнопка возврата -->
                 <Button text="Возврат на главную" onAction="#goToMainForm" styleClass="brand-return-button"/>
             </children>
             <padding>

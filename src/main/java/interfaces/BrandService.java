@@ -1,12 +1,5 @@
 package interfaces;
-
-
-
-
-
-
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Brand;
-
 import java.util.List;
 
 

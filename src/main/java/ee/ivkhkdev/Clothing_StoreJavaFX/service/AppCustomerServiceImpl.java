@@ -36,7 +36,7 @@ public class AppCustomerServiceImpl {
         repository.save(admin);
     }
 
-    // Метод add с проверкой на существование пользователя по логину
+
     public void add(Customer user) {
         if (repository.existsByUsername(user.getUsername())) {
             throw new IllegalArgumentException("Пользователь с логином '" + user.getUsername() + "' уже существует");
