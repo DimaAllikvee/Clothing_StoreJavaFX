@@ -1,6 +1,8 @@
 package ee.ivkhkdev.Clothing_StoreJavaFX.tools;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.ClothingStoreApp;
+import ee.ivkhkdev.Clothing_StoreJavaFX.controller.EditClothingFormController;
+import ee.ivkhkdev.Clothing_StoreJavaFX.model.Clothing;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -23,7 +25,7 @@ public class FormLoader {
     }
 
     public void loadLoginForm(){
-        FXMLLoader fxmlLoader = springFXMLLoader.load("/customer/loginForm.fxml");
+        FXMLLoader fxmlLoader = springFXMLLoader.load("/view/customer/loginForm.fxml");
         Parent root = null;
         try {
             root = fxmlLoader.load();
@@ -42,7 +44,7 @@ public class FormLoader {
     }
 
     public void loadMainForm() {
-        FXMLLoader fxmlLoader = springFXMLLoader.load("/main/mainForm.fxml");
+        FXMLLoader fxmlLoader = springFXMLLoader.load("/view/main/mainForm.fxml");
         Parent root;
         try {
             root = fxmlLoader.load();
@@ -58,7 +60,7 @@ public class FormLoader {
     }
 
     public void loadRegistrationForm() {
-        FXMLLoader fxmlLoader = springFXMLLoader.load("/customer/registrationForm.fxml");
+        FXMLLoader fxmlLoader = springFXMLLoader.load("/view/customer/registrationForm.fxml");
         Parent root = null;
         try {
             root = fxmlLoader.load();
@@ -72,7 +74,7 @@ public class FormLoader {
 
 
     public Parent loadMenuForm(){
-        FXMLLoader fxmlLoader = springFXMLLoader.load("/menu/menuForm.fxml");
+        FXMLLoader fxmlLoader = springFXMLLoader.load("/view/menu/menuForm.fxml");
         try {
             return fxmlLoader.load();
         }catch (IOException e){
@@ -81,7 +83,7 @@ public class FormLoader {
     }
 
     public void showAddClothingForm() {
-        FXMLLoader fxmlLoader = springFXMLLoader.load("/clothes/AddClothingForm.fxml");
+        FXMLLoader fxmlLoader = springFXMLLoader.load("/view/clothes/AddClothingForm.fxml");
         Parent root;
         try {
             root = fxmlLoader.load();
@@ -97,7 +99,7 @@ public class FormLoader {
     }
 
     public void showAddBrandForm() {
-        FXMLLoader fxmlLoader = springFXMLLoader.load("/clothes/AddBrandForm.fxml");
+        FXMLLoader fxmlLoader = springFXMLLoader.load("/view/clothes/AddBrandForm.fxml");
         Parent root;
         try {
             root = fxmlLoader.load();
@@ -108,6 +110,26 @@ public class FormLoader {
         Stage primaryStage = getPrimaryStage();
         primaryStage.setScene(scene);
         primaryStage.setTitle("Добавление нового бренда");
+        primaryStage.centerOnScreen();
+        primaryStage.show();
+    }
+
+    public void loadEditClothingForm(Clothing clothing) {
+        FXMLLoader fxmlLoader = springFXMLLoader.load("/view/clothes/EditClothingForm.fxml");
+        Parent root;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException("Не удалось загрузить /view/clothes/EditClothingForm.fxml", e);
+        }
+        // Получаем контроллер и передаем объект для редактирования
+        EditClothingFormController controller = fxmlLoader.getController();
+        controller.setEditClothing(clothing);
+
+        Scene scene = new Scene(root);
+        Stage primaryStage = getPrimaryStage();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Редактирование модели одежды");
         primaryStage.centerOnScreen();
         primaryStage.show();
     }

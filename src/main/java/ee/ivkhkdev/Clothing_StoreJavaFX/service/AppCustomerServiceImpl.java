@@ -1,13 +1,15 @@
 package ee.ivkhkdev.Clothing_StoreJavaFX.service;
 
+
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Customer;
 import ee.ivkhkdev.Clothing_StoreJavaFX.repository.CustomerRepository;
+import interfaces.AppCustomerService;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class AppCustomerServiceImpl {
+public class AppCustomerServiceImpl implements AppCustomerService {
     public static Customer currentCustomer;
 
     public enum ROLES {
@@ -15,13 +17,13 @@ public class AppCustomerServiceImpl {
     }
 
     private final CustomerRepository repository;
-
     public AppCustomerServiceImpl(CustomerRepository repository) {
         this.repository = repository;
         initSuperUser();
     }
 
-    private void initSuperUser() {
+    @Override
+    public void initSuperUser() {
         if (repository.count() > 0) {
             return;
         }
@@ -36,14 +38,16 @@ public class AppCustomerServiceImpl {
         repository.save(admin);
     }
 
-
-    public void add(Customer user) {
+    @Override
+    public Optional<Customer> add(Customer user) {
         if (repository.existsByUsername(user.getUsername())) {
             throw new IllegalArgumentException("Пользователь с логином '" + user.getUsername() + "' уже существует");
         }
-        repository.save(user);
+       return Optional.of(repository.save(user));
     }
 
+
+    @Override
     public boolean authentication(String username, String password) {
         Optional<Customer> optionalAppUser = repository.findByUsername(username);
         if(optionalAppUser.isEmpty()) {

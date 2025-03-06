@@ -34,4 +34,9 @@ public class BrandServiceImpl implements BrandService {
                 .map(Brand::getName)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<Brand> getAllBrandObjects() {
+        return List.of();
+    }
 }

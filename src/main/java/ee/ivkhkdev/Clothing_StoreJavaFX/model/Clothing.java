@@ -100,7 +100,7 @@ public class Clothing {
 
 
 
-@Override
+    @Override
     public String toString() {
         return "Clothing{" +
                 "id=" + id +
@@ -116,5 +116,4 @@ public class Clothing {
 
 
 }
-
 
