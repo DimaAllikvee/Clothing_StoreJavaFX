@@ -23,7 +23,7 @@ public class EditClothingFormController implements Initializable {
     private Clothing editClothing;
 
     @FXML private TextField tfName;
-    @FXML private ComboBox<String> cbBrand; // Используем строки для бренда
+    @FXML private ComboBox<String> cbBrand;
     @FXML private TextField tfSize;
     @FXML private TextField tfQuantity;
     @FXML private TextField tfPrice;

@@ -25,6 +25,8 @@ public class MenuFormController implements Initializable {
     @FXML private MenuItem miEnter;
     @FXML private MenuItem miProfile;
     @FXML private MenuItem miLogout;
+    @FXML private MenuItem miAddCustomer;
+    @FXML private MenuItem miShowCustomerList;
 
     public MenuFormController(FormLoader formLoader) {
         this.formLoader = formLoader;
@@ -33,6 +35,11 @@ public class MenuFormController implements Initializable {
     @FXML
     private void showAddClothingForm(){
          formLoader.showAddClothingForm();
+    }
+
+    @FXML
+    private void showAddCustomerForm(){
+        formLoader.showAddCustomerForm();
     }
 
     @FXML
@@ -49,6 +56,11 @@ public class MenuFormController implements Initializable {
     private void logout(){
      //   AppUserService.currentUser = null;
         formLoader.loadLoginForm();
+    }
+
+    @FXML
+    private void showCustomersForm(){
+        formLoader.showCustomersForm();
     }
 
     private void initMenuVisible(){
@@ -81,5 +93,8 @@ public class MenuFormController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initMenuVisible();
     }
+
+
+
 }
 

@@ -1,33 +1,42 @@
 package ee.ivkhkdev.Clothing_StoreJavaFX.model;
 
 import jakarta.persistence.*;
-
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
 
 @Entity
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false, unique = true)
     private String username;
+
     private String password;
     private String firstname;
     private String lastname;
+
+    @Column(nullable = false, columnDefinition = "DOUBLE DEFAULT 0.0")
+    private double balance;
+    ;
+
+
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> roles = new HashSet<>();
 
     public Customer() {}
-    public Customer(String username, String password, String firstname, String lastname) {
+
+    public Customer(String username, String password, String firstname, String lastname, double balance) {
         this.username = username;
         this.password = password;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.balance = 0.0;
     }
 
+    // Геттеры и сеттеры
     public Long getId() {
         return id;
     }
@@ -68,6 +77,14 @@ public class Customer {
         this.lastname = lastname;
     }
 
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
     public Set<String> getRoles() {
         return roles;
     }
@@ -76,23 +93,20 @@ public class Customer {
         this.roles = roles;
     }
 
-
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, firstname, lastname);
+        return Objects.hash(id, username, password, firstname, lastname, balance);
     }
 
     @Override
     public String toString() {
-        return "AppUser{" +
+        return "Customer{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", firstName='" + firstname + '\'' +
-                ", lastName='" + lastname + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", balance=" + balance +
                 '}';
     }
-
 }
-
-

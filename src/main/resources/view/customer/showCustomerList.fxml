@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<?import javafx.geometry.Insets?>
+<?import java.net.URL?>
+<VBox xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ee.ivkhkdev.Clothing_StoreJavaFX.controller.ShowCustomerListController"
+      prefHeight="400.0" prefWidth="600.0"
+      alignment="CENTER" spacing="10">
+
+    <stylesheets>
+        <URL value="@../css/showCustomer.css"/>
+    </stylesheets>
+    <children>
+        <TableView fx:id="tvCustomerList" prefHeight="350.0" prefWidth="600.0">
+            <columns>
+                <TableColumn fx:id="tcId" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="tcUsername" text="Логин" prefWidth="150"/>
+                <TableColumn fx:id="tcFirstName" text="Имя" prefWidth="150"/>
+                <TableColumn fx:id="tcLastName" text="Фамилия" prefWidth="150"/>
+                <TableColumn fx:id="tcBalance" text="Баланс" prefWidth="100"/>
+            </columns>
+        </TableView>
+        <Button text="Возврат на главную" onAction="#goToMainForm"/>
+    </children>
+
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+</VBox>

@@ -4,8 +4,11 @@ package ee.ivkhkdev.Clothing_StoreJavaFX.service;
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Customer;
 import ee.ivkhkdev.Clothing_StoreJavaFX.repository.CustomerRepository;
 import interfaces.AppCustomerService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -60,4 +63,13 @@ public class AppCustomerServiceImpl implements AppCustomerService {
         currentCustomer = loginUser;
         return true;
     }
+
+    @Override
+    public ObservableList<Customer> getListCustomers() {
+        List<Customer> customers = repository.findAll();
+        return FXCollections.observableArrayList(customers);
+    }
+
+
+
 }

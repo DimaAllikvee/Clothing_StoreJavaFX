@@ -35,8 +35,5 @@ public class BrandServiceImpl implements BrandService {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public List<Brand> getAllBrandObjects() {
-        return List.of();
-    }
+
 }

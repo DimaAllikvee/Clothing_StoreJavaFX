@@ -134,5 +134,37 @@ public class FormLoader {
         primaryStage.show();
     }
 
+    public void showAddCustomerForm() {
+        FXMLLoader fxmlLoader = springFXMLLoader.load("/view/customer/addCustomerForm.fxml");
+        Parent root;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException("Не удалось загрузить", e);
+        }
+        Scene scene = new Scene(root);
+        Stage primaryStage = getPrimaryStage();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Добавление нового пользователя");
+        primaryStage.centerOnScreen();
+        primaryStage.show();
+    }
+
+
+    public void showCustomersForm() {
+        FXMLLoader fxmlLoader = springFXMLLoader.load("/view/customer/showCustomerList.fxml");
+        Parent root;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException("Не удалось загрузить", e);
+        }
+        Scene scene = new Scene(root);
+        Stage primaryStage = getPrimaryStage();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Список пользователей");
+        primaryStage.centerOnScreen();
+        primaryStage.show();
+    }
 }
 
