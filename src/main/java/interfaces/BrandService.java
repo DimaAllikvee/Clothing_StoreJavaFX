@@ -2,9 +2,15 @@ package interfaces;
 
 
 
+
+
+
+import ee.ivkhkdev.Clothing_StoreJavaFX.model.Brand;
+
 import java.util.List;
 
-public interface BrandService {
-    void CreateBrand(String brandName);
+
+public interface BrandService extends AppService<Brand> {
     List<String> getAllBrands();
 }
+

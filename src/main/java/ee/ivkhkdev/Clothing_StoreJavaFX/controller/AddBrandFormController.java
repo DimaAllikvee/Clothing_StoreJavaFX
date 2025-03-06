@@ -1,5 +1,6 @@
 package ee.ivkhkdev.Clothing_StoreJavaFX.controller;
 
+import ee.ivkhkdev.Clothing_StoreJavaFX.model.Brand;
 import ee.ivkhkdev.Clothing_StoreJavaFX.service.BrandServiceImpl;
 import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
 import javafx.collections.FXCollections;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 @Component
@@ -46,8 +48,8 @@ public class AddBrandFormController implements Initializable {
             tfNewBrand.setPromptText("Введите название бренда!");
             return;
         }
-        // Добавляем новый бренд через сервис
-        brandServiceImpl.CreateBrand(newBrand);
+
+        Optional<Brand> result = brandServiceImpl.add(new Brand(newBrand));
         tfNewBrand.clear();
         refreshBrandList();
     }

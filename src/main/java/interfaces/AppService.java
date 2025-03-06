@@ -1,7 +1,11 @@
 package interfaces;
 
-public interface AppService <T>{
-    void add(T t);
 
 
+import java.util.Optional;
+
+
+public interface AppService<T> {
+    Optional<T> add(T t);
 }
+

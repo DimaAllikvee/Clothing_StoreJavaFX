@@ -1,6 +1,5 @@
 package ee.ivkhkdev.Clothing_StoreJavaFX.service;
 
-
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Clothing;
 import ee.ivkhkdev.Clothing_StoreJavaFX.repository.ClothingRepository;
 import interfaces.ClothingService;
@@ -9,6 +8,7 @@ import javafx.collections.ObservableList;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClothingServiceImpl implements ClothingService {
@@ -20,16 +20,14 @@ public class ClothingServiceImpl implements ClothingService {
     }
 
     @Override
-    public void add(Clothing clothing) {
-        clothingRepository.save(clothing);
+    public Optional<Clothing> add(Clothing clothing) {
+        // Сохраняем одежду и возвращаем её в Optional
+        return Optional.of(clothingRepository.save(clothing));
     }
 
     @Override
     public ObservableList<Clothing> getListClothing() {
         List<Clothing> list = clothingRepository.findAll();
-        ObservableList<Clothing> observableList = FXCollections.observableArrayList();
-        observableList.addAll(list);
-        return observableList;
+        return FXCollections.observableArrayList(list);
     }
 }
-
