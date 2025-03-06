@@ -23,7 +23,7 @@
     </stylesheets>
 
     <!-- Заголовок формы -->
-    <Label text="Редактирование модели одежды" styleClass="addclothing-title">
+    <Label text="Редактирование атрибуты одежды" styleClass="addclothing-title">
         <font>
             <Font size="20.0"/>
         </font>
