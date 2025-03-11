@@ -1,10 +1,13 @@
 package ee.ivkhkdev.Clothing_StoreJavaFX.tools;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.ClothingStoreApp;
+import ee.ivkhkdev.Clothing_StoreJavaFX.controller.ChangePasswordFormController;
 import ee.ivkhkdev.Clothing_StoreJavaFX.controller.EditClothingFormController;
 import ee.ivkhkdev.Clothing_StoreJavaFX.controller.EditCustomerFormController;
+import ee.ivkhkdev.Clothing_StoreJavaFX.controller.ProfileFormController;
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Clothing;
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Customer;
+import ee.ivkhkdev.Clothing_StoreJavaFX.service.AppCustomerServiceImpl;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -214,6 +217,51 @@ public class FormLoader {
         primaryStage.centerOnScreen();
         primaryStage.show();
     }
+
+    public void loadProfileForm() {
+        FXMLLoader fxmlLoader = springFXMLLoader.load("/view/customer/profileForm.fxml");
+        Parent root;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException("Не удалось загрузить /view/customer/profileForm.fxml", e);
+        }
+        ProfileFormController controller = fxmlLoader.getController();
+        // Передаем текущего пользователя
+        if (AppCustomerServiceImpl.currentCustomer != null) {
+            controller.setCustomer(AppCustomerServiceImpl.currentCustomer);
+        }
+        Scene scene = new Scene(root);
+        Stage primaryStage = getPrimaryStage();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Профиль пользователя");
+        primaryStage.centerOnScreen();
+        primaryStage.show();
+    }
+
+
+    public void loadChangePasswordForm(Customer customer) {
+        FXMLLoader fxmlLoader = springFXMLLoader.load("/view/customer/ChangePasswordForm.fxml");
+        Parent root;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException("Не удалось загрузить /view/customer/ChangePasswordForm.fxml", e);
+        }
+        // Получаем контроллер формы изменения пароля
+        ChangePasswordFormController controller = fxmlLoader.getController();
+        // Передаём текущего пользователя, если он установлен
+        if (AppCustomerServiceImpl.currentCustomer != null) {
+            controller.setCustomer(AppCustomerServiceImpl.currentCustomer);
+        }
+        Scene scene = new Scene(root);
+        Stage primaryStage = getPrimaryStage();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Изменение пароля");
+        primaryStage.centerOnScreen();
+        primaryStage.show();
+    }
+
 
 
 

@@ -27,8 +27,9 @@
                     <items>
                         <MenuItem fx:id="miEnter" mnemonicParsing="false" onAction="#showLoginForm" styleClass="menu-item-sub" text="Вход" />
                         <MenuItem fx:id="miLogout" mnemonicParsing="false" onAction="#logout" styleClass="menu-item-sub" text="Выход" />
-                        <MenuItem fx:id="miProfile" mnemonicParsing="false" styleClass="menu-item-sub" text="Профиль" />
-                  <MenuItem fx:id="miAddCustomer" mnemonicParsing="false" onAction="#showAddCustomerForm" styleClass="menu-item-sub" text="Добавить покупателя" />
+                        <MenuItem fx:id="miProfile" mnemonicParsing="false" onAction="#showProfileForm" styleClass="menu-item-sub" text="Профиль" />
+
+                        <MenuItem fx:id="miAddCustomer" mnemonicParsing="false" onAction="#showAddCustomerForm" styleClass="menu-item-sub" text="Добавить покупателя" />
                         <MenuItem fx:id="miShowCustomerList" mnemonicParsing="false" onAction="#showCustomersForm" styleClass="menu-item-sub" text="Список покупателей" />
 
 
