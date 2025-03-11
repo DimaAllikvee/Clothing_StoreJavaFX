@@ -65,7 +65,7 @@ public class ChangePasswordFormController implements Initializable {
         currentCustomer.setPassword(newPass);
         appCustomerService.add(currentCustomer);
         formLoader.loadMainForm();
-        closeWindow();
+
     }
 
 

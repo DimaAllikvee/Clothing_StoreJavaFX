@@ -36,7 +36,7 @@ public class Customer {
         this.balance = 0.0;
     }
 
-    // Геттеры и сеттеры
+
     public Long getId() {
         return id;
     }
