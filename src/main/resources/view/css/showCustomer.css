@@ -1,10 +1,11 @@
-/* Общий фон для корневого контейнера */
-.root {
+/* Корневой контейнер */
+.showcustomer-root {
     -fx-background-color: linear-gradient(to bottom, #f0f4f7, #d9e2ec);
+    -fx-padding: 20;
 }
 
-/* Стили для TableView */
-.table-view {
+/* Таблица */
+.showcustomer-table {
     -fx-background-color: #ffffff;
     -fx-background-radius: 8;
     -fx-border-color: #cccccc;
@@ -12,37 +13,51 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 5, 0, 0, 2);
 }
 
-/* Заголовок столбцов */
-.table-view .column-header-background {
+/* Заголовки таблицы */
+.showcustomer-table .column-header-background {
     -fx-background-color: #457b9d;
     -fx-background-radius: 8 8 0 0;
 }
 
-.table-view .column-header,
-.table-view .filler {
+.showcustomer-table .column-header,
+.showcustomer-table .filler {
     -fx-alignment: CENTER;
     -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
 }
 
-/* Выравнивание содержимого ячеек */
-.table-column {
+/* Ячейки таблицы */
+.showcustomer-table .table-column {
     -fx-alignment: CENTER;
     -fx-font-size: 13px;
 }
 
-/* Кнопка "Возврат на главную" */
-.button {
+/* Общий контейнер кнопок */
+.showcustomer-buttonbox {
+    -fx-alignment: CENTER;
+    -fx-spacing: 10;
+    -fx-padding: 10 0 0 0; /* Отступ сверху для отделения от таблицы */
+}
+
+/* Вложенный HBox для кнопки редактирования */
+.showcustomer-editbox {
+    -fx-alignment: CENTER;
+    -fx-spacing: 10;
+}
+
+/* Кнопки */
+.showcustomer-button {
     -fx-background-color: #457b9d;
     -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
     -fx-background-radius: 4;
     -fx-cursor: hand;
-    -fx-padding: 8 20 8 20;
+    -fx-padding: 6 10 6 10;
+    -fx-min-width: 150px; /* одинаковая минимальная ширина */
 }
 
-.button:hover {
+.showcustomer-button:hover {
     -fx-background-color: #1d3557;
 }

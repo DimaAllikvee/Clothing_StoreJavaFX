@@ -2,7 +2,9 @@ package ee.ivkhkdev.Clothing_StoreJavaFX.tools;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.ClothingStoreApp;
 import ee.ivkhkdev.Clothing_StoreJavaFX.controller.EditClothingFormController;
+import ee.ivkhkdev.Clothing_StoreJavaFX.controller.EditCustomerFormController;
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Clothing;
+import ee.ivkhkdev.Clothing_StoreJavaFX.model.Customer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -57,6 +59,34 @@ public class FormLoader {
         primaryStage.setTitle("Clothing_StoreJavaFX магазин верхней одежды");
         primaryStage.centerOnScreen();
         primaryStage.show();
+    }
+
+
+    public void loadEditForm(){
+        FXMLLoader fxmlLoader = springFXMLLoader.load("/view/customer/showCustomerList.fxml");
+        Parent root = null;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+        getPrimaryStage().setScene(scene);
+        getPrimaryStage().setTitle("Редактирование пользователя");
+    }
+
+
+    public void loadCustomerForm(){
+        FXMLLoader fxmlLoader = springFXMLLoader.load("/view/customer/showCustomerList.fxml");
+        Parent root = null;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+        getPrimaryStage().setScene(scene);
+        getPrimaryStage().setTitle("Список пользователей");
     }
 
     public void loadRegistrationForm() {
@@ -166,5 +196,26 @@ public class FormLoader {
         primaryStage.centerOnScreen();
         primaryStage.show();
     }
+
+    public void loadEditCustomerForm(Customer customer) {
+        FXMLLoader fxmlLoader = springFXMLLoader.load("/view/customer/editCustomerForm.fxml");
+        Parent root;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException("Не удалось загрузить /view/customer/EditCustomerForm.fxml", e);
+        }
+        EditCustomerFormController controller = fxmlLoader.getController();
+        controller.setEditCustomer(customer);
+        Scene scene = new Scene(root);
+        Stage primaryStage = getPrimaryStage();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Редактирование покупателя");
+        primaryStage.centerOnScreen();
+        primaryStage.show();
+    }
+
+
+
 }
 

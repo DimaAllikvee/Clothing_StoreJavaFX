@@ -4,6 +4,7 @@ package ee.ivkhkdev.Clothing_StoreJavaFX.controller;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.service.AppCustomerServiceImpl;
 import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Menu;
@@ -27,6 +28,7 @@ public class MenuFormController implements Initializable {
     @FXML private MenuItem miLogout;
     @FXML private MenuItem miAddCustomer;
     @FXML private MenuItem miShowCustomerList;
+
 
     public MenuFormController(FormLoader formLoader) {
         this.formLoader = formLoader;
@@ -94,7 +96,12 @@ public class MenuFormController implements Initializable {
         initMenuVisible();
     }
 
+    @FXML
+    private void showEditCustomer(ActionEvent event) {
 
+        System.out.println("showEditCustomer invoked.");
+
+    }
 
 }
 
