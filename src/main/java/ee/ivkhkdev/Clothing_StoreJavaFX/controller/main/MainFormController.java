@@ -1,4 +1,4 @@
-package ee.ivkhkdev.Clothing_StoreJavaFX.controller;
+package ee.ivkhkdev.Clothing_StoreJavaFX.controller.main;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Clothing;
 import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
@@ -66,6 +66,8 @@ public class MainFormController implements Initializable {
             }
         });
     }
+
+
 
     @FXML
     private void showEditClothingForm(ActionEvent actionEvent) {

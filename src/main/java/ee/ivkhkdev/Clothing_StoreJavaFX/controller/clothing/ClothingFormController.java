@@ -1,4 +1,4 @@
-package ee.ivkhkdev.Clothing_StoreJavaFX.controller;
+package ee.ivkhkdev.Clothing_StoreJavaFX.controller.clothing;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Clothing;
 

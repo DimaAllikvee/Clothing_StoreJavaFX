@@ -1,4 +1,4 @@
-package ee.ivkhkdev.Clothing_StoreJavaFX.controller;
+package ee.ivkhkdev.Clothing_StoreJavaFX.controller.auth;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Customer;
 import ee.ivkhkdev.Clothing_StoreJavaFX.service.AppCustomerServiceImpl;

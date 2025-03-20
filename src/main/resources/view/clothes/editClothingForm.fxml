@@ -14,7 +14,7 @@
 <VBox fx:id="vbClothingFormRoot" prefHeight="380.0" prefWidth="630.0"
       xmlns="http://javafx.com/javafx/23.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="ee.ivkhkdev.Clothing_StoreJavaFX.controller.EditClothingFormController"
+      fx:controller="ee.ivkhkdev.Clothing_StoreJavaFX.controller.clothing.EditClothingFormController"
       alignment="CENTER" spacing="20" styleClass="addclothing-root">
 
     <!-- Подключаем CSS-файл -->

@@ -1,4 +1,4 @@
-package ee.ivkhkdev.Clothing_StoreJavaFX.controller;
+package ee.ivkhkdev.Clothing_StoreJavaFX.controller.clothing;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Clothing;
 import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;

@@ -8,4 +8,7 @@ public interface AppCustomerService extends AppService<Customer>  {
     void initSuperUser();
     boolean authentication(String username, String password);
     ObservableList<Customer> getListCustomers();
+
+    public Customer getCurrentCustomer();
+
 }

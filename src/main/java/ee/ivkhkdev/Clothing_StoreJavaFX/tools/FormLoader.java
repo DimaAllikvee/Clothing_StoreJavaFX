@@ -1,14 +1,16 @@
 package ee.ivkhkdev.Clothing_StoreJavaFX.tools;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.ClothingStoreApp;
-import ee.ivkhkdev.Clothing_StoreJavaFX.controller.ChangePasswordFormController;
-import ee.ivkhkdev.Clothing_StoreJavaFX.controller.EditClothingFormController;
-import ee.ivkhkdev.Clothing_StoreJavaFX.controller.EditCustomerFormController;
-import ee.ivkhkdev.Clothing_StoreJavaFX.controller.ProfileFormController;
+import ee.ivkhkdev.Clothing_StoreJavaFX.controller.order.UserOrderFormController;
+import ee.ivkhkdev.Clothing_StoreJavaFX.controller.profile.ChangePasswordFormController;
+import ee.ivkhkdev.Clothing_StoreJavaFX.controller.clothing.EditClothingFormController;
+import ee.ivkhkdev.Clothing_StoreJavaFX.controller.customer.EditCustomerFormController;
+import ee.ivkhkdev.Clothing_StoreJavaFX.controller.customer.ProfileFormController;
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Clothing;
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Customer;
 import ee.ivkhkdev.Clothing_StoreJavaFX.service.AppCustomerServiceImpl;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -55,6 +57,23 @@ public class FormLoader {
             root = fxmlLoader.load();
         } catch (IOException e) {
             throw new RuntimeException("Не удалось загрузить /main/mainForm.fxml", e);
+        }
+        Scene scene = new Scene(root);
+        Stage primaryStage = getPrimaryStage();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Clothing_StoreJavaFX магазин верхней одежды");
+        primaryStage.centerOnScreen();
+        primaryStage.show();
+    }
+
+
+    public void loadMainFormCatalog() {
+        FXMLLoader fxmlLoader = springFXMLLoader.load("/view/catalog/CatalogForm.fxml");
+        Parent root;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException("Не удалось загрузить /main/mainFormCatalog.fxml", e);
         }
         Scene scene = new Scene(root);
         Stage primaryStage = getPrimaryStage();
@@ -261,9 +280,72 @@ public class FormLoader {
         primaryStage.centerOnScreen();
         primaryStage.show();
     }
+    public void loadOrderForm() {
+        FXMLLoader fxmlLoader = springFXMLLoader.load("/view/order/orderForm.fxml");
+        Parent root;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException("Не удалось загрузить форму заказа", e);
+        }
+        Scene scene = new Scene(root);
+        Stage primaryStage = getPrimaryStage();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Оформление заказа");
+        primaryStage.centerOnScreen();
+        primaryStage.show();
+    }
+
+    public void loadUserOrderForm(Clothing clothing) {
+        FXMLLoader fxmlLoader = springFXMLLoader.load("/view/order/userOrderForm.fxml");
+        Parent root;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException("Не удалось загрузить форму заказа", e);
+        }
+        // Получаем контроллер формы заказа
+        UserOrderFormController controller = fxmlLoader.getController();
+        // Передаем выбранный товар
+        controller.setSelectedClothing(clothing);
+
+        Scene scene = new Scene(root);
+        Stage primaryStage = getPrimaryStage();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Заказы пользователя");
+        primaryStage.centerOnScreen();
+        primaryStage.show();
+    }
+
+
+    public void loadCatalogForm() {
+        FXMLLoader fxmlLoader = springFXMLLoader.load("/view/catalog/CatalogForm.fxml");
+        Parent root;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException("Не удалось загрузить CatalogForm", e);
+        }
+        Scene scene = new Scene(root);
+        Stage primaryStage = getPrimaryStage();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Каталог одежды");
+        primaryStage.centerOnScreen();
+        primaryStage.show();
+    }
+
+
+
+    }
 
 
 
 
-}
+
+
+
+
+
+
+
 

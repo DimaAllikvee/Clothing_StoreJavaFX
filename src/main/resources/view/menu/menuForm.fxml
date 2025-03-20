@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import java.net.URL?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="vbMenuFormRoot" prefHeight="23.0" prefWidth="599.0" styleClass="menu-root" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ee.ivkhkdev.Clothing_StoreJavaFX.controller.MenuFormController">
+<VBox fx:id="vbMenuFormRoot" prefHeight="23.0" prefWidth="599.0" styleClass="menu-root"
+      xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ee.ivkhkdev.Clothing_StoreJavaFX.controller.main.MenuFormController">
 
-    <!-- Подключаем CSS-файл -->
     <stylesheets>
         <URL value="@../css/menu.css" />
     </stylesheets>
@@ -18,9 +18,20 @@
             <menus>
                 <Menu fx:id="mClothing" mnemonicParsing="false" styleClass="menu-item" text="Товары">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#showAddClothingForm" styleClass="menu-item-sub" text="Добавить одежду" />
-                        <MenuItem mnemonicParsing="false" onAction="#showAddBrandForm" styleClass="menu-item-sub" text="Добавить бренд" />
-                        <MenuItem mnemonicParsing="false" styleClass="menu-item-sub" text="Список одежды" />
+                        <MenuItem fx:id="miAddClothing"
+                                  mnemonicParsing="false"
+                                  onAction="#showAddClothingForm"
+                                  styleClass="menu-item-sub"
+                                  text="Добавить одежду" />
+                        <MenuItem fx:id="miAddBrand"
+                                  mnemonicParsing="false"
+                                  onAction="#showAddBrandForm"
+                                  styleClass="menu-item-sub"
+                                  text="Добавить бренд" />
+                        <MenuItem fx:id="miListClothing"
+                                  mnemonicParsing="false"
+                                  styleClass="menu-item-sub"
+                                  text="Список одежды" />
                     </items>
                 </Menu>
                 <Menu fx:id="mUsers" mnemonicParsing="false" styleClass="menu-item" text="Покупатель">
@@ -28,11 +39,26 @@
                         <MenuItem fx:id="miEnter" mnemonicParsing="false" onAction="#showLoginForm" styleClass="menu-item-sub" text="Вход" />
                         <MenuItem fx:id="miLogout" mnemonicParsing="false" onAction="#logout" styleClass="menu-item-sub" text="Выход" />
                         <MenuItem fx:id="miProfile" mnemonicParsing="false" onAction="#showProfileForm" styleClass="menu-item-sub" text="Профиль" />
-
-                        <MenuItem fx:id="miAddCustomer" mnemonicParsing="false" onAction="#showAddCustomerForm" styleClass="menu-item-sub" text="Добавить покупателя" />
-                        <MenuItem fx:id="miShowCustomerList" mnemonicParsing="false" onAction="#showCustomersForm" styleClass="menu-item-sub" text="Список покупателей" />
-
-
+                        <MenuItem fx:id="miAddCustomer"
+                                  mnemonicParsing="false"
+                                  onAction="#showAddCustomerForm"
+                                  styleClass="menu-item-sub"
+                                  text="Добавить покупателя" />
+                        <MenuItem fx:id="miShowCustomerList"
+                                  mnemonicParsing="false"
+                                  onAction="#showCustomersForm"
+                                  styleClass="menu-item-sub"
+                                  text="Список покупателей" />
+                        <MenuItem fx:id="miPlaceOrder"
+                                  mnemonicParsing="false"
+                                  onAction="#showOrderForm"
+                                  styleClass="menu-item-sub"
+                                  text="Оформить заказ" />
+                        <MenuItem fx:id="mishowCatalogForm"
+                                    mnemonicParsing="false"
+                                    onAction="#showCatalogForm"
+                                    styleClass="menu-item-sub"
+                                    text="Каталог" />
 
                     </items>
                 </Menu>

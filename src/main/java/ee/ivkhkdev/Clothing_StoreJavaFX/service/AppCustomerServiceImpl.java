@@ -76,6 +76,12 @@ public class AppCustomerServiceImpl implements AppCustomerService {
         return FXCollections.observableArrayList(customers);
     }
 
+    @Override
+    public Customer getCurrentCustomer() {
+        return currentCustomer;
+    }
+
+
 
 
 }

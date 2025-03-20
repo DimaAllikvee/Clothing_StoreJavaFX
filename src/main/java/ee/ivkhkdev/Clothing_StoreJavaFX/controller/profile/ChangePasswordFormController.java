@@ -1,4 +1,4 @@
-package ee.ivkhkdev.Clothing_StoreJavaFX.controller;
+package ee.ivkhkdev.Clothing_StoreJavaFX.controller.profile;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Customer;
 import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
@@ -64,14 +64,14 @@ public class ChangePasswordFormController implements Initializable {
         // Обновляем пароль
         currentCustomer.setPassword(newPass);
         appCustomerService.add(currentCustomer);
-        formLoader.loadMainForm();
+        formLoader.loadMainFormCatalog();
 
     }
 
 
     @FXML
     private void cancel() {
-        formLoader.loadMainForm();
+        formLoader.loadMainFormCatalog();
 
     }
 

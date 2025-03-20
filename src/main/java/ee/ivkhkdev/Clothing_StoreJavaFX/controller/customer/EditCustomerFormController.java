@@ -1,4 +1,4 @@
-package ee.ivkhkdev.Clothing_StoreJavaFX.controller;
+package ee.ivkhkdev.Clothing_StoreJavaFX.controller.customer;
 
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Customer;
@@ -9,7 +9,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
