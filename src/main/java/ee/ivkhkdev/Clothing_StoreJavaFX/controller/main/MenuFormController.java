@@ -168,4 +168,15 @@ public class MenuFormController implements Initializable {
     private void showCatalogForm() {
         formLoader.loadCatalogForm();
     }
+
+    @FXML
+    private void showRevenueForm() {
+        formLoader.loadRevenueForm();
+    }
+
+    @FXML
+    private void showRatingForm() {
+        formLoader.loadRatingChartForm();
+    }
+
 }

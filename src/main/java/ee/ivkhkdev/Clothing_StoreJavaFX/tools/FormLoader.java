@@ -334,9 +334,41 @@ public class FormLoader {
         primaryStage.show();
     }
 
-
-
+    public void loadRevenueForm() {
+        FXMLLoader fxmlLoader = springFXMLLoader.load("/view/order/RevenueForm.fxml");
+        Parent root;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException("Не удалось загрузить RevenueForm.fxml", e);
+        }
+        Scene scene = new Scene(root);
+        Stage primaryStage = getPrimaryStage();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Доход магазина");
+        primaryStage.centerOnScreen();
+        primaryStage.show();
     }
+
+
+    public void loadRatingChartForm() {
+        FXMLLoader fxmlLoader = springFXMLLoader.load("/view/rating/ratingForm.fxml");
+        Parent root;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException("Не удалось загрузить RatingForm.fxml", e);
+        }
+        Scene scene = new Scene(root);
+        Stage primaryStage = getPrimaryStage();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Рейтинг продаж");
+        primaryStage.centerOnScreen();
+        primaryStage.show();
+    }
+
+
+}
 
 
 

@@ -26,6 +26,7 @@ public class EditClothingFormController implements Initializable {
     @FXML private TextField tfSize;
     @FXML private TextField tfQuantity;
     @FXML private TextField tfPrice;
+    @FXML private TextField tcInStock;
 
     public EditClothingFormController(FormLoader formLoader, ClothingService clothingService, BrandService brandService) {
         this.formLoader = formLoader;
@@ -43,6 +44,7 @@ public class EditClothingFormController implements Initializable {
         cbBrand.getSelectionModel().select(editClothing.getBrand());
         tfSize.setText(editClothing.getSize());
         tfQuantity.setText(String.valueOf(editClothing.getQuantity()));
+        tcInStock.setText(String.valueOf(editClothing.getInStock()));
         tfPrice.setText(String.valueOf(editClothing.getPrice()));
     }
 
@@ -57,6 +59,7 @@ public class EditClothingFormController implements Initializable {
             editClothing.setBrand(selectedBrand);
             editClothing.setSize(tfSize.getText());
             editClothing.setQuantity(Integer.parseInt(tfQuantity.getText()));
+            editClothing.setInStock(Integer.parseInt(tcInStock.getText()));
             editClothing.setPrice(Double.parseDouble(tfPrice.getText()));
             clothingService.add(editClothing);
         }

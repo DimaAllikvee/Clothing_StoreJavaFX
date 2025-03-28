@@ -68,52 +68,70 @@ public class OrderFormController implements Initializable {
 
     @FXML
     private void placeOrder() {
+        // 1. Проверяем, что выбран покупатель
         Customer selectedCustomer = cbCustomer.getSelectionModel().getSelectedItem();
-        Clothing selectedClothing = cbClothing.getSelectionModel().getSelectedItem();
-
         if (selectedCustomer == null) {
             lblError.setText("Выберите покупателя для заказа.");
             return;
         }
+        // 2. Проверяем, что выбран товар
+        Clothing selectedClothing = cbClothing.getSelectionModel().getSelectedItem();
         if (selectedClothing == null) {
             lblError.setText("Выберите товар для заказа.");
             return;
         }
+        // 3. Проверяем корректность введённого количества
         int orderQuantity;
         try {
             orderQuantity = Integer.parseInt(tfQuantity.getText().trim());
+            if (orderQuantity <= 0) {
+                lblError.setText("Введите корректное количество (больше нуля).");
+                return;
+            }
         } catch (NumberFormatException e) {
-            lblError.setText("Введите корректное количество товара.");
+            lblError.setText("Введите корректное число в поле количества.");
             return;
         }
+
+        // 4. Вычисляем итоговую стоимость
         double totalCost = selectedClothing.getPrice() * orderQuantity;
+
+        // 5. Проверяем, достаточно ли средств у покупателя
         if (selectedCustomer.getBalance() < totalCost) {
             lblError.setText("Недостаточно средств у покупателя.");
             return;
         }
-        if (selectedClothing.getQuantity() < orderQuantity) {
-            lblError.setText("Недостаточно товара на складе.");
+
+        // 6. Проверяем, что товар есть на складе
+        if (selectedClothing.getInStock() <= 0) {
+            lblError.setText("Товар отсутствует на складе.");
+            return;
+        }
+        // 7. Проверяем, что пользователь не хочет купить больше, чем есть
+        if (selectedClothing.getInStock() < orderQuantity) {
+            lblError.setText("Недостаточно товара на складе (доступно: " + selectedClothing.getInStock() + ").");
             return;
         }
 
-        // Уменьшаем баланс покупателя
+        // 8. Уменьшаем баланс покупателя
         selectedCustomer.setBalance(selectedCustomer.getBalance() - totalCost);
-        // Уменьшаем количество товара (и количество в наличии)
+        // 9. Уменьшаем количество товара (и его inStock)
         selectedClothing.setQuantity(selectedClothing.getQuantity() - orderQuantity);
         selectedClothing.setInStock(selectedClothing.getInStock() - orderQuantity);
 
-        // Создаем заказ
+        // 10. Создаем заказ
         Order order = new Order(selectedCustomer, selectedClothing, orderQuantity, totalCost);
         orderService.add(order);
 
-        // Обновляем данные в базе
+        // 11. Обновляем данные в базе
         clothingService.add(selectedClothing);
         appCustomerService.add(selectedCustomer);
 
+        // 12. Сообщаем об успехе и возвращаемся на главную форму
         lblError.setText("Заказ оформлен. Итоговая сумма: " + totalCost);
         formLoader.loadMainForm();
-
     }
+
 
 
 

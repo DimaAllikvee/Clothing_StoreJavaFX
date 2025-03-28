@@ -35,9 +35,7 @@
         <padding>
             <Insets top="10" right="20" bottom="10" left="20"/>
         </padding>
-        <!-- ID (не редактируется) -->
-        <Label text="ID:" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="editcustomer-label"/>
-        <TextField fx:id="tfId" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="editcustomer-field" editable="false"/>
+
         <!-- Имя -->
         <Label text="Имя:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="editcustomer-label"/>
         <TextField fx:id="tfFirstName" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="editcustomer-field"/>

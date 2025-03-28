@@ -28,7 +28,8 @@
         </font>
     </Label>
 
-    <!-- Метка для вывода сообщений об ошибке -->
+
+
     <Label fx:id="lbInfo" text="" styleClass="register-info" />
 
     <!-- Основной контейнер для полей (GridPane) -->

@@ -50,9 +50,14 @@
         <Label text="Количество:" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="addclothing-label"/>
         <TextField fx:id="tfQuantity" GridPane.rowIndex="3" GridPane.columnIndex="1" styleClass="addclothing-field"/>
 
+        <Label text="В наличии:" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="addclothing-label"/>
+        <TextField fx:id="tcInStock" GridPane.rowIndex="4" GridPane.columnIndex="1" styleClass="addclothing-field"/>
+
+
+
         <!-- Цена -->
-        <Label text="Цена:" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="addclothing-label"/>
-        <TextField fx:id="tfPrice" GridPane.rowIndex="4" GridPane.columnIndex="1" styleClass="addclothing-field"/>
+        <Label text="Цена:" GridPane.rowIndex="5" GridPane.columnIndex="0" styleClass="addclothing-label"/>
+        <TextField fx:id="tfPrice" GridPane.rowIndex="5" GridPane.columnIndex="1" styleClass="addclothing-field"/>
     </GridPane>
 
     <!-- Блок с кнопками -->
