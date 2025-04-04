@@ -56,7 +56,7 @@ public class ProfileFormController implements Initializable {
      */
     @FXML
     private void cancel() {
-        formLoader.loadMainFormCatalog();
+        formLoader.loadMainForm();
 
     }
 

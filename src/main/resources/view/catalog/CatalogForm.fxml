@@ -12,8 +12,8 @@
       fx:controller="ee.ivkhkdev.Clothing_StoreJavaFX.controller.catalog.CatalogFormController"
       alignment="CENTER"
       spacing="0"
-      prefHeight="1500.0"
-      prefWidth="1000.0"
+      prefHeight="1000.0"
+      prefWidth="1500.0"
       styleClass="catalog-root">
 
     <stylesheets>

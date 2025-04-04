@@ -2,41 +2,58 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-
-
 <?import java.net.URL?>
 <?import javafx.scene.text.Font?>
+
+
 <VBox xmlns="http://javafx.com/javafx/23.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="ee.ivkhkdev.Clothing_StoreJavaFX.controller.order.RevenueFormController"
-      alignment="CENTER" spacing="20"
-      prefHeight="400.0" prefWidth="600.0"
+      alignment="CENTER" spacing="20" prefHeight="400.0" prefWidth="600.0"
       styleClass="revenue-root">
 
     <stylesheets>
         <URL value="@../css/revenue.css"/>
     </stylesheets>
 
-    <!-- Заголовок -->
+    <!-- Заголовок окна -->
     <Label text="Доход магазина" styleClass="revenue-title">
         <font>
             <Font size="22.0"/>
         </font>
     </Label>
 
-
+    <!-- Радиокнопки для выбора: За день, За месяц, За год -->
     <HBox spacing="15" alignment="CENTER">
-        <RadioButton fx:id="rbDay" text="За день" toggleGroup="$tgPeriod" styleClass="revenue-radio"/>
-        <RadioButton fx:id="rbMonth" text="За месяц" toggleGroup="$tgPeriod" styleClass="revenue-radio"/>
-        <RadioButton fx:id="rbYear" text="За год" toggleGroup="$tgPeriod" styleClass="revenue-radio"/>
+        <RadioButton fx:id="rbDay" text="За день"/>
+        <RadioButton fx:id="rbMonth" text="За месяц"/>
+        <RadioButton fx:id="rbYear" text="За год"/>
     </HBox>
 
+    <!-- Контейнер, в котором будут отображаться ComboBox в зависимости от выбранного периода -->
+    <StackPane fx:id="spPeriodContainer" alignment="CENTER">
 
-    <HBox spacing="10" alignment="CENTER">
-        <Label text="Введите значение:" styleClass="revenue-label"/>
-        <TextField fx:id="tfPeriod" promptText="например, 2025-03-28 или 2025-03 или 2025" styleClass="revenue-field"/>
-    </HBox>
+        <!-- Для дня (1..31) -->
+        <HBox fx:id="hbDay" spacing="10" alignment="CENTER">
+            <Label text="День:"/>
+            <ComboBox fx:id="cbDay" promptText="Выберите день"/>
+        </HBox>
+
+        <!-- Для месяца: месяц (1..12) + год -->
+        <HBox fx:id="hbMonth" spacing="10" alignment="CENTER" visible="false">
+            <Label text="Месяц:"/>
+            <ComboBox fx:id="cbMonth" promptText="1..12"/>
+
+            <Label text="Год:"/>
+            <ComboBox fx:id="cbMonthYear" promptText="2023..2025"/>
+        </HBox>
+
+        <!-- Для года (2023..2025) -->
+        <HBox fx:id="hbYear" spacing="10" alignment="CENTER" visible="false">
+            <Label text="Год:"/>
+            <ComboBox fx:id="cbYear" promptText="2023..2025"/>
+        </HBox>
+    </StackPane>
 
     <!-- Кнопка для расчёта дохода -->
     <Button text="Показать доход" onAction="#calculateRevenue" styleClass="revenue-button"/>
@@ -47,4 +64,6 @@
     <!-- Кнопка возврата -->
     <Button text="Назад" onAction="#cancel" styleClass="revenue-button"/>
 </VBox>
+
+
 
