@@ -183,9 +183,7 @@ public class RevenueFormController implements Initializable {
         }
     }
 
-    /**
-     * Обработчик кнопки "Назад" – возвращает на главное окно и закрывает текущее.
-     */
+
     @FXML
     private void cancel() {
         formLoader.loadMainForm();

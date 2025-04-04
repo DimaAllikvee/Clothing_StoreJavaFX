@@ -6,7 +6,6 @@ import interfaces.AppCustomerService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
@@ -29,12 +28,10 @@ public class ProfileFormController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Здесь можно выполнить дополнительную инициализацию, если потребуется.
+
     }
 
-    /**
-     * Устанавливает текущего пользователя и заполняет метки.
-     */
+
     public void setCustomer(Customer customer) {
         this.currentCustomer = customer;
         if (customer != null) {
@@ -43,17 +40,13 @@ public class ProfileFormController implements Initializable {
         }
     }
 
-    /**
-     * Открывает модальное окно для изменения пароля.
-     */
+
     @FXML
     private void openChangePasswordWindow() {
         formLoader.loadChangePasswordForm(currentCustomer);
     }
 
-    /**
-     * Возвращает на главное окно.
-     */
+
     @FXML
     private void cancel() {
         formLoader.loadMainForm();

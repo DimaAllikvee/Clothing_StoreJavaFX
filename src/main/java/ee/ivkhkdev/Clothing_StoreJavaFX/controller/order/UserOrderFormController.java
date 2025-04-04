@@ -25,7 +25,7 @@ public class UserOrderFormController implements Initializable {
     @FXML private Label lblTotal;
     @FXML private Label lblError;
 
-    private Clothing selectedClothing; // Выбранный товар, который передаётся извне
+    private Clothing selectedClothing;
 
     private final FormLoader formLoader;
     private final ClothingService clothingService;
@@ -44,13 +44,11 @@ public class UserOrderFormController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // При изменении количества пересчитываем итоговую сумму
+
         tfQuantity.textProperty().addListener((obs, oldVal, newVal) -> recalcTotal());
     }
 
-    /**
-     * Устанавливает выбранный товар и отображает его информацию.
-     */
+
     public void setSelectedClothing(Clothing clothing) {
         this.selectedClothing = clothing;
         if (clothing != null) {
@@ -64,9 +62,7 @@ public class UserOrderFormController implements Initializable {
         }
     }
 
-    /**
-     * Пересчитывает итоговую стоимость заказа.
-     */
+
     private void recalcTotal() {
         int quantity = 0;
         try {
@@ -82,11 +78,7 @@ public class UserOrderFormController implements Initializable {
         }
     }
 
-    /**
-     * Метод оформления заказа для пользователя.
-     * Получает текущего покупателя из сервиса, проверяет введённое количество,
-     * достаточно ли средств и товара, затем обновляет баланс, количество товара и сохраняет заказ.
-     */
+
     @FXML
     private void placeOrder() {
         if (selectedClothing == null) {
@@ -130,7 +122,7 @@ public class UserOrderFormController implements Initializable {
         Order order = new Order(currentCustomer, selectedClothing, quantity, totalCost);
         orderService.add(order);
 
-        // Обновляем записи в базе
+
         clothingService.add(selectedClothing);
         appCustomerService.add(currentCustomer);
 

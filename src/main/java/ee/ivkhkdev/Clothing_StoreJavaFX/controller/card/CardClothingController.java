@@ -17,8 +17,8 @@ public class CardClothingController {
     @FXML private Label lblInStock;
     @FXML private Button btnBuy;
 
-    private Clothing clothing;  // Текущий товар
-    private FormLoader formLoader; // Ссылка на FormLoader для открытия формы заказа
+    private Clothing clothing;
+    private FormLoader formLoader;
 
     public void setClothing(Clothing clothing) {
         this.clothing = clothing;
@@ -27,21 +27,13 @@ public class CardClothingController {
         lblSize.setText("Размер: " + clothing.getSize());
         lblPrice.setText("Цена: " + clothing.getPrice());
         lblInStock.setText("В наличии: " + clothing.getInStock());
-        // Если у вас есть изображение, можно установить:
-        // imgClothing.setImage(new Image(clothing.getImagePath()));
     }
 
-    /**
-     * Устанавливает FormLoader, чтобы можно было открыть форму заказа.
-     */
     public void setFormLoader(FormLoader formLoader) {
         this.formLoader = formLoader;
     }
 
-    /**
-     * Метод, вызываемый при нажатии на кнопку "Купить".
-     * Здесь мы просто вызываем форму заказа, передавая выбранный товар.
-     */
+
     @FXML
     private void buyClothing() {
         if (formLoader != null) {

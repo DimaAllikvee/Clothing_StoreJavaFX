@@ -9,6 +9,6 @@ public interface AppCustomerService extends AppService<Customer>  {
     boolean authentication(String username, String password);
     ObservableList<Customer> getListCustomers();
 
-    public Customer getCurrentCustomer();
+    Customer getCurrentCustomer();
 
 }

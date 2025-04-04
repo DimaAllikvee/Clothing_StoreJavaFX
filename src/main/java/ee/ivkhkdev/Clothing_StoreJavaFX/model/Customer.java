@@ -20,7 +20,7 @@ public class Customer {
 
     @Column(nullable = false, columnDefinition = "DOUBLE DEFAULT 0.0")
     private double balance;
-    ;
+
 
 
     @ElementCollection(fetch = FetchType.EAGER)

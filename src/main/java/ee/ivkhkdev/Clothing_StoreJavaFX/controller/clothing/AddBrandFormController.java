@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import org.springframework.stereotype.Component;
-
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;

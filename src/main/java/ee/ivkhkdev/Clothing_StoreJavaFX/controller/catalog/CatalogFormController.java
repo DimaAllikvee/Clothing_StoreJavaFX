@@ -47,7 +47,6 @@ public class CatalogFormController implements Initializable {
 
                 CardClothingController controller = loader.getController();
                 controller.setClothing(clothing);
-                // Передаём FormLoader в контроллер карточки
                 controller.setFormLoader(formLoader);
 
                 flowPaneClothing.getChildren().add(cardNode);
@@ -57,7 +56,6 @@ public class CatalogFormController implements Initializable {
         }
     }
 
-    // =========== Обработчики пунктов меню ===========
 
     @FXML
     private void goHome() {

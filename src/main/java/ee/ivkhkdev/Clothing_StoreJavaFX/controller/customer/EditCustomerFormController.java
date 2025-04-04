@@ -72,6 +72,6 @@ public class EditCustomerFormController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Дополнительная инициализация
+
     }
 }

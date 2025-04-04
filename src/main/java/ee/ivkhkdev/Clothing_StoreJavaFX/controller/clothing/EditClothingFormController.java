@@ -28,15 +28,13 @@ public class EditClothingFormController implements Initializable {
     @FXML private TextField tfPrice;
     @FXML private TextField tcInStock;
 
+
     public EditClothingFormController(FormLoader formLoader, ClothingService clothingService, BrandService brandService) {
         this.formLoader = formLoader;
         this.clothingService = clothingService;
         this.brandService = brandService;
     }
 
-    /**
-     * Устанавливает объект для редактирования и заполняет поля формы.
-     */
     public void setEditClothing(Clothing editClothing) {
         this.editClothing = editClothing;
         tfName.setText(editClothing.getName());
@@ -48,9 +46,7 @@ public class EditClothingFormController implements Initializable {
         tfPrice.setText(String.valueOf(editClothing.getPrice()));
     }
 
-    /**
-     * Сохраняет изменения в объекте товара и возвращает на главную форму.
-     */
+
     @FXML
     private void goEdit() {
         if (editClothing != null) {
@@ -67,9 +63,7 @@ public class EditClothingFormController implements Initializable {
 
     }
 
-    /**
-     * Возвращает на главную форму без сохранения изменений.
-     */
+
     @FXML
     private void goToMainForm() {
         formLoader.loadMainForm();

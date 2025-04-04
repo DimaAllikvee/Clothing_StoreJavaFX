@@ -11,7 +11,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import org.springframework.stereotype.Component;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -28,7 +27,6 @@ public class ShowCustomerListController implements Initializable {
     @FXML private TableColumn<Customer, String> tcLastName;
     @FXML private TableColumn<Customer, Double> tcBalance;
     @FXML private HBox hbEditCustomer;
-
     public ShowCustomerListController(FormLoader formLoader, AppCustomerService appCustomerService) {
         this.formLoader = formLoader;
         this.appCustomerService = appCustomerService;
@@ -53,6 +51,7 @@ public class ShowCustomerListController implements Initializable {
         });
     }
 
+    
     @FXML
     private void editCustomer() {
         Customer selected = tvCustomerList.getSelectionModel().getSelectedItem();

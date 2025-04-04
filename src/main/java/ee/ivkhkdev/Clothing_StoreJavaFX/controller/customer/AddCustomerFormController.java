@@ -34,7 +34,7 @@ public class AddCustomerFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Дополнительная инициализация, если требуется
+
     }
 
     @FXML

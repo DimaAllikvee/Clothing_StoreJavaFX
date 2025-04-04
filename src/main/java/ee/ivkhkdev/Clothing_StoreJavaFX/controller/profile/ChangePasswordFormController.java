@@ -28,16 +28,12 @@ public class ChangePasswordFormController implements Initializable {
         this.formLoader = formLoader;
     }
 
-    /**
-     * Устанавливает текущего пользователя, для которого меняем пароль.
-     */
+
     public void setCustomer(Customer customer) {
         this.currentCustomer = customer;
     }
 
-    /**
-     * Сохраняет новый пароль после проверки текущего и подтверждения.
-     */
+
     @FXML
     private void savePassword() {
         String currentPass = pfCurrentPassword.getText().trim();

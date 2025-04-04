@@ -19,6 +19,8 @@ public class AppCustomerServiceImpl implements AppCustomerService {
         USER, MANAGER, ADMINISTRATOR
     }
 
+    //Избавится от статического поля на динамический и также сделать так чтобы администратор мог менять роль зарегестрованы пользывателем
+    //Сделать менеджера
     private final CustomerRepository repository;
     public AppCustomerServiceImpl(CustomerRepository repository) {
         this.repository = repository;
@@ -43,7 +45,7 @@ public class AppCustomerServiceImpl implements AppCustomerService {
 
     @Override
     public Optional<Customer> add(Customer user) {
-        // Если у пользователя уже есть ID, то это обновление, поэтому просто сохраняем
+
         if (user.getId() != null) {
             return Optional.of(repository.save(user));
         }
