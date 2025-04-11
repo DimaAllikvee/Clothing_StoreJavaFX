@@ -1,7 +1,8 @@
 package ee.ivkhkdev.Clothing_StoreJavaFX.controller.card;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Clothing;
-import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.card.CardClothingFormLoader;
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.catalog.CatalogFormLoader;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,7 +19,7 @@ public class CardClothingController {
     @FXML private Button btnBuy;
 
     private Clothing clothing;
-    private FormLoader formLoader;
+    private  CardClothingFormLoader cardClothingFormLoader;
 
     public void setClothing(Clothing clothing) {
         this.clothing = clothing;
@@ -29,18 +30,18 @@ public class CardClothingController {
         lblInStock.setText("В наличии: " + clothing.getInStock());
     }
 
-    public void setFormLoader(FormLoader formLoader) {
-        this.formLoader = formLoader;
+    public void setFormLoader(CatalogFormLoader catalogFormLoader) {
+        this.cardClothingFormLoader = cardClothingFormLoader;
     }
 
 
     @FXML
     private void buyClothing() {
-        if (formLoader != null) {
+        if (cardClothingFormLoader != null) {
             // Открываем форму оформления заказа для данного товара
-            formLoader.loadUserOrderForm(clothing);
+            cardClothingFormLoader.loadUserOrderForm(clothing);
         } else {
-            System.out.println("FormLoader не установлен. Проверьте инъекцию зависимостей.");
+            System.out.println("cardClothingFormLoader не установлен. Проверьте инъекцию зависимостей.");
         }
     }
 }

@@ -1,7 +1,8 @@
 package ee.ivkhkdev.Clothing_StoreJavaFX.controller.rating;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Clothing;
-import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
+
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.main.MainFormLoader;
 import interfaces.OrderService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,11 +26,12 @@ public class RatingChartController implements Initializable {
     @FXML private NumberAxis yAxis;
 
     private final OrderService orderService;
-    private final FormLoader formLoader;
+    private final MainFormLoader mainFormLoader;
 
-    public RatingChartController(OrderService orderService, FormLoader formLoader) {
+    public RatingChartController(OrderService orderService, MainFormLoader mainFormLoader) {
         this.orderService = orderService;
-        this.formLoader = formLoader;
+
+        this.mainFormLoader = mainFormLoader;
     }
 
     @Override
@@ -105,6 +107,6 @@ public class RatingChartController implements Initializable {
 
     @FXML
     private void cancel() {
-        formLoader.loadMainForm();
+        mainFormLoader.loadMainForm();
     }
 }

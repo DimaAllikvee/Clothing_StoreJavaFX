@@ -1,7 +1,7 @@
 package ee.ivkhkdev.Clothing_StoreJavaFX.controller.customer;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Customer;
-import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.customer.ProfileFormLoader;
 import interfaces.AppCustomerService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,15 +15,16 @@ import java.util.ResourceBundle;
 public class ProfileFormController implements Initializable {
 
     private final AppCustomerService appCustomerService;
-    private final FormLoader formLoader;
+    private final ProfileFormLoader profileFormLoader;
     private Customer currentCustomer;
 
     @FXML private Label lblUsername;
     @FXML private Label lblBalance;
 
-    public ProfileFormController(AppCustomerService appCustomerService, FormLoader formLoader) {
+    public ProfileFormController(AppCustomerService appCustomerService, ProfileFormLoader profileFormLoader) {
         this.appCustomerService = appCustomerService;
-        this.formLoader = formLoader;
+
+        this.profileFormLoader = profileFormLoader;
     }
 
     @Override
@@ -43,13 +44,13 @@ public class ProfileFormController implements Initializable {
 
     @FXML
     private void openChangePasswordWindow() {
-        formLoader.loadChangePasswordForm(currentCustomer);
+        profileFormLoader.loadChangePasswordForm(currentCustomer);
     }
 
 
     @FXML
     private void cancel() {
-        formLoader.loadMainForm();
+        profileFormLoader.loadMainForm();
 
     }
 

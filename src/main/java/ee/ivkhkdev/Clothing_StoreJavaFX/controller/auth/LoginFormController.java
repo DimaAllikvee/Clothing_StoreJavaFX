@@ -1,7 +1,7 @@
 package ee.ivkhkdev.Clothing_StoreJavaFX.controller.auth;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.service.AppCustomerServiceImpl;
-import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.auth.LoginFormLoader;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -16,11 +16,11 @@ public class LoginFormController {
     @FXML private Label lbInfo;
 
     private final AppCustomerServiceImpl customerService;
-    private final FormLoader formLoader;
+    private final LoginFormLoader loginFormLoader;
 
-    public LoginFormController(AppCustomerServiceImpl customerService, FormLoader formLoader) {
+    public LoginFormController(AppCustomerServiceImpl customerService, LoginFormLoader loginFormLoader) {
         this.customerService = customerService;
-        this.formLoader = formLoader;
+        this.loginFormLoader = loginFormLoader;
     }
 
     @FXML
@@ -39,10 +39,10 @@ public class LoginFormController {
         if (AppCustomerServiceImpl.currentCustomer.getRoles().contains("ADMINISTRATOR")
                 || AppCustomerServiceImpl.currentCustomer.getRoles().contains("MANAGER")) {
             // Открываем MainForm (где таблица)
-            formLoader.loadMainForm();
+            loginFormLoader.loadMainForm();
         } else {
             // Иначе считаем, что это USER
-            formLoader.loadCatalogForm();
+            loginFormLoader.loadCatalogForm();
         }
 
 
@@ -50,7 +50,7 @@ public class LoginFormController {
 
     @FXML
     private void showRegistrationForm(){
-        formLoader.loadRegistrationForm();
+        loginFormLoader.loadRegistrationForm();
     }
 
 

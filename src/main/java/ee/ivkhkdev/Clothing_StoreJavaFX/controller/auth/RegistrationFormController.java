@@ -2,7 +2,7 @@ package ee.ivkhkdev.Clothing_StoreJavaFX.controller.auth;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Customer;
 import ee.ivkhkdev.Clothing_StoreJavaFX.service.AppCustomerServiceImpl;
-import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.auth.RegitrationFormLoader;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class RegistrationFormController {
 
     private final AppCustomerServiceImpl appCustomerServiceImpl;
-    private final FormLoader formLoader;
+    private final RegitrationFormLoader regitrationFormLoader;
 
     @FXML
     private TextField tfFirstname;
@@ -26,9 +26,9 @@ public class RegistrationFormController {
     @FXML
     private Label lbInfo;
 
-    public RegistrationFormController(AppCustomerServiceImpl appCustomerServiceImpl, FormLoader formLoader) {
+    public RegistrationFormController(AppCustomerServiceImpl appCustomerServiceImpl, RegitrationFormLoader regitrationFormLoader) {
         this.appCustomerServiceImpl = appCustomerServiceImpl;
-        this.formLoader = formLoader;
+        this.regitrationFormLoader = regitrationFormLoader;
     }
 
     @FXML
@@ -45,7 +45,7 @@ public class RegistrationFormController {
             appCustomerServiceImpl.add(newCustomer);
 
             // При успешной регистрации переходим на форму логина
-            formLoader.loadLoginForm();
+            regitrationFormLoader.loadLoginForm();
         } catch (IllegalArgumentException e) {
             // Выводим сообщение о том, что пользователь уже существует
             lbInfo.setText(e.getMessage());

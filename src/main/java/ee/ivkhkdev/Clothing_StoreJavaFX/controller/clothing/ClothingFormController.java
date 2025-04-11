@@ -2,7 +2,8 @@ package ee.ivkhkdev.Clothing_StoreJavaFX.controller.clothing;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Clothing;
 
-import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
+
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.clothing.ClothingFormLoader;
 import interfaces.BrandService;
 import interfaces.ClothingService;
 import javafx.fxml.FXML;
@@ -17,7 +18,7 @@ import java.util.ResourceBundle;
 @Component
 public class ClothingFormController implements Initializable {
 
-    private final FormLoader formLoader;
+    private final ClothingFormLoader clothingFormLoader;
     private final ClothingService clothingService;
     private final BrandService brandService;
 
@@ -32,8 +33,9 @@ public class ClothingFormController implements Initializable {
     @FXML
     private TextField tfPrice;
 
-    public ClothingFormController(FormLoader formLoader, ClothingService clothingService, BrandService brandService) {
-        this.formLoader = formLoader;
+    public ClothingFormController(ClothingFormLoader clothingFormLoader, ClothingService clothingService, BrandService brandService) {
+        this.clothingFormLoader = clothingFormLoader;
+
         this.clothingService = clothingService;
         this.brandService = brandService;
     }
@@ -59,11 +61,11 @@ public class ClothingFormController implements Initializable {
         clothing.setPrice(price);
 
         clothingService.add(clothing);
-        formLoader.loadMainForm();
+        clothingFormLoader.loadMainForm();
     }
 
     @FXML
     private void goToMainForm() {
-        formLoader.loadMainForm();
+        clothingFormLoader.loadMainForm();
     }
 }

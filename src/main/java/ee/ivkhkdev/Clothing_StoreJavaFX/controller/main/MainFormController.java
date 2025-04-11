@@ -1,7 +1,8 @@
 package ee.ivkhkdev.Clothing_StoreJavaFX.controller.main;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Clothing;
-import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.clothing.ClothingFormLoader;
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.main.MainFormLoader;
 import interfaces.ClothingService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,22 +20,34 @@ import java.util.ResourceBundle;
 @Component
 public class MainFormController implements Initializable {
 
-    private final FormLoader formLoader;
+    private final MainFormLoader mainFormLoader;
+    private final ClothingFormLoader clothingFormLoader;
     private final ClothingService clothingService;
 
-    @FXML private VBox vbMainFormRoot;
-    @FXML private TableView<Clothing> tvClothingList;
-    @FXML private TableColumn<Clothing, Long> tcId;
-    @FXML private TableColumn<Clothing, String> tcName;
-    @FXML private TableColumn<Clothing, String> tcBrand;
-    @FXML private TableColumn<Clothing, String> tcSize;
-    @FXML private TableColumn<Clothing, Integer> tcQuantity;
-    @FXML private TableColumn<Clothing, Integer> tcInStock;
-    @FXML private TableColumn<Clothing, Double> tcPrice;
-    @FXML private HBox hbEditClothing;  // Контейнер для кнопки редактирования
+    @FXML
+    private VBox vbMainFormRoot;
+    @FXML
+    private TableView<Clothing> tvClothingList;
+    @FXML
+    private TableColumn<Clothing, Long> tcId;
+    @FXML
+    private TableColumn<Clothing, String> tcName;
+    @FXML
+    private TableColumn<Clothing, String> tcBrand;
+    @FXML
+    private TableColumn<Clothing, String> tcSize;
+    @FXML
+    private TableColumn<Clothing, Integer> tcQuantity;
+    @FXML
+    private TableColumn<Clothing, Integer> tcInStock;
+    @FXML
+    private TableColumn<Clothing, Double> tcPrice;
+    @FXML
+    private HBox hbEditClothing;  // Контейнер для кнопки редактирования
 
-    public MainFormController(FormLoader formLoader, ClothingService clothingService) {
-        this.formLoader = formLoader;
+    public MainFormController(MainFormLoader mainFormLoader, ClothingFormLoader clothingFormLoader, ClothingService clothingService) {
+        this.mainFormLoader = mainFormLoader;
+        this.clothingFormLoader = clothingFormLoader;
         this.clothingService = clothingService;
     }
 
@@ -42,8 +55,8 @@ public class MainFormController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("MainFormController initialized");
 
-        // Загружаем меню и добавляем его в начало корневого контейнера
-        vbMainFormRoot.getChildren().add(0, formLoader.loadMenuForm());
+        // Загружаем меню через MainFormLoader и добавляем его в начало корневого контейнера
+        vbMainFormRoot.getChildren().add(0, mainFormLoader.loadMenuForm());
 
         // Настройка столбцов таблицы
         tcId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -54,26 +67,23 @@ public class MainFormController implements Initializable {
         tcInStock.setCellValueFactory(new PropertyValueFactory<>("inStock"));
         tcPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-        // Устанавливаем данные в таблицу
+        // Загружаем данные из сервиса и устанавливаем в таблицу
         tvClothingList.setItems(clothingService.getListClothing());
 
-        // Добавляем слушатель для изменения выделения в таблице:
+        // Отображаем контейнер с кнопкой редактирования, если выбран товар
         tvClothingList.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-                hbEditClothing.setVisible(true);
-            } else {
-                hbEditClothing.setVisible(false);
-            }
+            hbEditClothing.setVisible(newSelection != null);
         });
     }
 
-
-
+    /**
+     * Обработчик для кнопки "Редактировать модель".
+     */
     @FXML
     private void showEditClothingForm(ActionEvent actionEvent) {
         Clothing selectedClothing = tvClothingList.getSelectionModel().getSelectedItem();
         if (selectedClothing != null) {
-            formLoader.loadEditClothingForm(selectedClothing);
+            clothingFormLoader.loadEditClothingForm(selectedClothing);
         } else {
             System.out.println("Выберите товар для редактирования.");
         }

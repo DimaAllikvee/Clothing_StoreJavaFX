@@ -1,7 +1,7 @@
 package ee.ivkhkdev.Clothing_StoreJavaFX.controller.clothing;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Clothing;
-import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.clothing.EditClothingFormLoader;
 import interfaces.BrandService;
 import interfaces.ClothingService;
 import javafx.fxml.FXML;
@@ -16,10 +16,11 @@ import java.util.ResourceBundle;
 @Component
 public class EditClothingFormController implements Initializable {
 
-    private final FormLoader formLoader;
+
     private final ClothingService clothingService;
     private final BrandService brandService;
     private Clothing editClothing;
+    private final EditClothingFormLoader editClothingFormLoader;
 
     @FXML private TextField tfName;
     @FXML private ComboBox<String> cbBrand;
@@ -29,10 +30,11 @@ public class EditClothingFormController implements Initializable {
     @FXML private TextField tcInStock;
 
 
-    public EditClothingFormController(FormLoader formLoader, ClothingService clothingService, BrandService brandService) {
-        this.formLoader = formLoader;
+    public EditClothingFormController(ClothingService clothingService, BrandService brandService, EditClothingFormLoader editClothingFormLoader) {
+
         this.clothingService = clothingService;
         this.brandService = brandService;
+        this.editClothingFormLoader = editClothingFormLoader;
     }
 
     public void setEditClothing(Clothing editClothing) {
@@ -59,14 +61,14 @@ public class EditClothingFormController implements Initializable {
             editClothing.setPrice(Double.parseDouble(tfPrice.getText()));
             clothingService.add(editClothing);
         }
-        formLoader.loadMainForm();
+        editClothingFormLoader.loadMainForm();
 
     }
 
 
     @FXML
     private void goToMainForm() {
-        formLoader.loadMainForm();
+        editClothingFormLoader.loadMainForm();
 
     }
 

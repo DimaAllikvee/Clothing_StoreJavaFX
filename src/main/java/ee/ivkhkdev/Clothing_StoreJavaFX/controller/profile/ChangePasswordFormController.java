@@ -1,7 +1,7 @@
 package ee.ivkhkdev.Clothing_StoreJavaFX.controller.profile;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Customer;
-import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.catalog.CatalogFormLoader;
 import interfaces.AppCustomerService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,16 +16,17 @@ import java.util.ResourceBundle;
 public class ChangePasswordFormController implements Initializable {
 
     private final AppCustomerService appCustomerService;
-    private final FormLoader formLoader;
+    private final CatalogFormLoader catalogFormLoader;
     private Customer currentCustomer;
 
     @FXML private PasswordField pfCurrentPassword;
     @FXML private PasswordField pfNewPassword;
     @FXML private PasswordField pfConfirmPassword;
 
-    public ChangePasswordFormController(AppCustomerService appCustomerService, FormLoader formLoader) {
+    public ChangePasswordFormController(AppCustomerService appCustomerService, CatalogFormLoader catalogFormLoader) {
         this.appCustomerService = appCustomerService;
-        this.formLoader = formLoader;
+        this.catalogFormLoader = catalogFormLoader;
+
     }
 
 
@@ -60,14 +61,14 @@ public class ChangePasswordFormController implements Initializable {
         // Обновляем пароль
         currentCustomer.setPassword(newPass);
         appCustomerService.add(currentCustomer);
-        formLoader.loadMainFormCatalog();
+        catalogFormLoader.loadMainFormCatalog();
 
     }
 
 
     @FXML
     private void cancel() {
-        formLoader.loadMainFormCatalog();
+        catalogFormLoader.loadMainFormCatalog();
 
     }
 

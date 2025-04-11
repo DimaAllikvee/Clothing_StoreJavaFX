@@ -3,7 +3,7 @@ package ee.ivkhkdev.Clothing_StoreJavaFX.controller.order;
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Clothing;
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Customer;
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Order;
-import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.catalog.CatalogFormLoader;
 import interfaces.AppCustomerService;
 import interfaces.ClothingService;
 import interfaces.OrderService;
@@ -11,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
@@ -27,16 +26,17 @@ public class UserOrderFormController implements Initializable {
 
     private Clothing selectedClothing;
 
-    private final FormLoader formLoader;
+    private final CatalogFormLoader catalogFormLoader;
     private final ClothingService clothingService;
     private final OrderService orderService;
     private final AppCustomerService appCustomerService;
 
-    public UserOrderFormController(FormLoader formLoader,
-                                   ClothingService clothingService,
-                                   OrderService orderService,
-                                   AppCustomerService appCustomerService) {
-        this.formLoader = formLoader;
+    public UserOrderFormController(
+            CatalogFormLoader catalogFormLoader, ClothingService clothingService,
+            OrderService orderService,
+            AppCustomerService appCustomerService) {
+        this.catalogFormLoader = catalogFormLoader;
+
         this.clothingService = clothingService;
         this.orderService = orderService;
         this.appCustomerService = appCustomerService;
@@ -127,13 +127,13 @@ public class UserOrderFormController implements Initializable {
         appCustomerService.add(currentCustomer);
 
         lblError.setText("Заказ оформлен. Итоговая сумма: " + totalCost);
-        formLoader.loadMainFormCatalog();
+        catalogFormLoader.loadMainFormCatalog();
 
     }
 
     @FXML
     private void cancel() {
-        formLoader.loadMainFormCatalog();
+        catalogFormLoader.loadMainFormCatalog();
    
     }
 

@@ -1,7 +1,7 @@
 package ee.ivkhkdev.Clothing_StoreJavaFX.controller.customer;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Customer;
-import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.customer.AddCustomerFormLoader;
 import interfaces.AppCustomerService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,8 +17,9 @@ import java.util.ResourceBundle;
 @Component
 public class AddCustomerFormController implements Initializable {
 
-    private final FormLoader formLoader;
+
     private final AppCustomerService appCustomerService;
+    private final AddCustomerFormLoader addCustomerFormLoader;
 
     @FXML private TextField tfFirstName;
     @FXML private TextField tfLastName;
@@ -27,9 +28,10 @@ public class AddCustomerFormController implements Initializable {
     @FXML private TextField tfBalance;
     @FXML private Label lbInfo;
 
-    public AddCustomerFormController(FormLoader formLoader, AppCustomerService appCustomerService) {
-        this.formLoader = formLoader;
+    public AddCustomerFormController(AppCustomerService appCustomerService, AddCustomerFormLoader addCustomerFormLoader) {
+
         this.appCustomerService = appCustomerService;
+        this.addCustomerFormLoader = addCustomerFormLoader;
     }
 
     @Override
@@ -72,7 +74,7 @@ public class AddCustomerFormController implements Initializable {
         try {
             Optional<Customer> result = appCustomerService.add(newCustomer);
             if (result.isPresent()) {
-                formLoader.loadLoginForm();
+                addCustomerFormLoader.loadLoginForm();
             } else {
                 lbInfo.setText("Пользователь с таким логином уже существует!");
             }
@@ -83,6 +85,6 @@ public class AddCustomerFormController implements Initializable {
 
     @FXML
     private void goToMainForm() {
-        formLoader.loadMainForm();
+        addCustomerFormLoader.loadMainForm();
     }
 }

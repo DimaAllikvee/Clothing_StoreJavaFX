@@ -2,7 +2,8 @@ package ee.ivkhkdev.Clothing_StoreJavaFX.controller.catalog;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.controller.card.CardClothingController;
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Clothing;
-import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
+
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.catalog.CatalogFormLoader;
 import interfaces.ClothingService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,11 +24,12 @@ public class CatalogFormController implements Initializable {
     @FXML private FlowPane flowPaneClothing;
 
     private final ClothingService clothingService;
-    private final FormLoader formLoader;
+    private final CatalogFormLoader catalogFormLoader;
 
-    public CatalogFormController(ClothingService clothingService, FormLoader formLoader) {
+    public CatalogFormController(ClothingService clothingService,CatalogFormLoader catalogFormLoader) {
         this.clothingService = clothingService;
-        this.formLoader = formLoader;
+
+        this.catalogFormLoader = catalogFormLoader;
     }
 
     @Override
@@ -47,7 +49,7 @@ public class CatalogFormController implements Initializable {
 
                 CardClothingController controller = loader.getController();
                 controller.setClothing(clothing);
-                controller.setFormLoader(formLoader);
+                controller.setFormLoader(catalogFormLoader);
 
                 flowPaneClothing.getChildren().add(cardNode);
             } catch (IOException e) {
@@ -60,7 +62,7 @@ public class CatalogFormController implements Initializable {
     @FXML
     private void goHome() {
         System.out.println("Возврат на главную");
-        formLoader.loadMainFormCatalog();
+        catalogFormLoader.loadMainFormCatalog();
     }
 
     @FXML
@@ -72,12 +74,12 @@ public class CatalogFormController implements Initializable {
     @FXML
     private void showProfile() {
         System.out.println("Открыть профиль");
-        formLoader.loadProfileForm();
+        catalogFormLoader.loadProfileForm();
     }
 
     @FXML
     private void logout() {
         System.out.println("Выход");
-        formLoader.loadLoginForm();
+        catalogFormLoader.loadLoginForm();
     }
 }

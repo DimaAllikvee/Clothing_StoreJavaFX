@@ -2,7 +2,8 @@ package ee.ivkhkdev.Clothing_StoreJavaFX.controller.clothing;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Brand;
 import ee.ivkhkdev.Clothing_StoreJavaFX.service.BrandServiceImpl;
-import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.clothing.AddBrandFormLoader;
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.catalog.CatalogFormLoader;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,7 +20,7 @@ import java.util.ResourceBundle;
 public class AddBrandFormController implements Initializable {
 
     private final BrandServiceImpl brandServiceImpl;
-    private final FormLoader formLoader;
+    private final AddBrandFormLoader addBrandFormLoader;
 
     @FXML
     private ListView<String> lvBrands;
@@ -30,9 +31,11 @@ public class AddBrandFormController implements Initializable {
     @FXML
     private Button btnAddBrand;
 
-    public AddBrandFormController(BrandServiceImpl brandServiceImpl, FormLoader formLoader) {
+    public AddBrandFormController(BrandServiceImpl brandServiceImpl, CatalogFormLoader catalogFormLoader, AddBrandFormLoader addBrandFormLoader) {
         this.brandServiceImpl = brandServiceImpl;
-        this.formLoader = formLoader;
+
+
+        this.addBrandFormLoader = addBrandFormLoader;
     }
 
     @Override
@@ -55,7 +58,7 @@ public class AddBrandFormController implements Initializable {
 
     @FXML
     private void goToMainForm() {
-        formLoader.loadMainForm();
+        addBrandFormLoader.loadMainForm();
     }
 
     private void refreshBrandList() {

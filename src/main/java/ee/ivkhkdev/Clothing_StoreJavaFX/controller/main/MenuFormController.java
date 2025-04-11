@@ -1,7 +1,7 @@
 package ee.ivkhkdev.Clothing_StoreJavaFX.controller.main;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.service.AppCustomerServiceImpl;
-import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.main.MenuFormLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,7 +15,8 @@ import java.util.ResourceBundle;
 @Component
 public class MenuFormController implements Initializable {
 
-    private final FormLoader formLoader;
+
+    private final MenuFormLoader menuFormLoader;
 
     // Меню
     @FXML private Menu mClothing;
@@ -33,8 +34,9 @@ public class MenuFormController implements Initializable {
     @FXML private MenuItem miListClothing;
     @FXML private MenuItem miPlaceOrder;
 
-    public MenuFormController(FormLoader formLoader) {
-        this.formLoader = formLoader;
+    public MenuFormController(MenuFormLoader menuFormLoader) {
+        this.menuFormLoader = menuFormLoader;
+
     }
 
     @Override
@@ -119,44 +121,44 @@ public class MenuFormController implements Initializable {
     // Методы, вызываемые при выборе пунктов меню
     @FXML
     private void showAddClothingForm(){
-        formLoader.showAddClothingForm();
+        menuFormLoader.showAddClothingForm();
     }
 
     @FXML
     private void showAddCustomerForm(){
-        formLoader.showAddCustomerForm();
+        menuFormLoader.showAddCustomerForm();
     }
 
     @FXML
     private void showAddBrandForm() {
-        formLoader.showAddBrandForm();
+        menuFormLoader.showAddBrandForm();
     }
 
     @FXML
     private void showLoginForm(){
-        formLoader.loadLoginForm();
+        menuFormLoader.loadLoginForm();
     }
 
     @FXML
     private void logout(){
         // Сбрасываем текущего пользователя
         AppCustomerServiceImpl.currentCustomer = null;
-        formLoader.loadLoginForm();
+        menuFormLoader.loadLoginForm();
     }
 
     @FXML
     private void showCustomersForm(){
-        formLoader.showCustomersForm();
+        menuFormLoader.showCustomersForm();
     }
 
     @FXML
     private void showProfileForm() {
-        formLoader.loadProfileForm();
+        menuFormLoader.loadProfileForm();
     }
 
     @FXML
     private void showOrderForm() {
-        formLoader.loadOrderForm();
+        menuFormLoader.loadOrderForm();
     }
 
     @FXML
@@ -166,17 +168,17 @@ public class MenuFormController implements Initializable {
 
     @FXML
     private void showCatalogForm() {
-        formLoader.loadCatalogForm();
+        menuFormLoader.loadCatalogForm();
     }
 
     @FXML
     private void showRevenueForm() {
-        formLoader.loadRevenueForm();
+        menuFormLoader.loadRevenueForm();
     }
 
     @FXML
     private void showRatingForm() {
-        formLoader.loadRatingChartForm();
+        menuFormLoader.loadRatingChartForm();
     }
 
 }

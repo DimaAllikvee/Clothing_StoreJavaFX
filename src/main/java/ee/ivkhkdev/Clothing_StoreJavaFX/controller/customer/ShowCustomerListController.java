@@ -1,7 +1,9 @@
 package ee.ivkhkdev.Clothing_StoreJavaFX.controller.customer;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Customer;
-import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.customer.CustomerFormLoader;
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.main.MainFormLoader;
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.customer.ShowCustomerListFormLoader;
 import interfaces.AppCustomerService;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,8 +19,10 @@ import java.util.ResourceBundle;
 @Component
 public class ShowCustomerListController implements Initializable {
 
-    private final FormLoader formLoader;
+    private final ShowCustomerListFormLoader showCustomerListFormLoader;
     private final AppCustomerService appCustomerService;
+    private final CustomerFormLoader customerFormLoader;
+    private final MainFormLoader mainFormLoader;
 
     @FXML private TableView<Customer> tvCustomerList;
     @FXML private TableColumn<Customer, Long> tcId;
@@ -27,9 +31,12 @@ public class ShowCustomerListController implements Initializable {
     @FXML private TableColumn<Customer, String> tcLastName;
     @FXML private TableColumn<Customer, Double> tcBalance;
     @FXML private HBox hbEditCustomer;
-    public ShowCustomerListController(FormLoader formLoader, AppCustomerService appCustomerService) {
-        this.formLoader = formLoader;
+    public ShowCustomerListController(ShowCustomerListFormLoader showCustomerListFormLoader, AppCustomerService appCustomerService, CustomerFormLoader customerFormLoader, MainFormLoader mainFormLoader) {
+        this.showCustomerListFormLoader = showCustomerListFormLoader;
+
         this.appCustomerService = appCustomerService;
+        this.customerFormLoader = customerFormLoader;
+        this.mainFormLoader = mainFormLoader;
     }
 
     @Override
@@ -56,7 +63,7 @@ public class ShowCustomerListController implements Initializable {
     private void editCustomer() {
         Customer selected = tvCustomerList.getSelectionModel().getSelectedItem();
         if (selected != null) {
-            formLoader.loadEditCustomerForm(selected);
+            customerFormLoader.loadEditCustomerForm(selected);
         } else {
             System.out.println("Выберите покупателя для редактирования.");
         }
@@ -64,6 +71,6 @@ public class ShowCustomerListController implements Initializable {
 
     @FXML
     private void goToMainForm() {
-        formLoader.loadMainForm();
+        mainFormLoader.loadMainForm();
     }
 }

@@ -3,7 +3,8 @@ package ee.ivkhkdev.Clothing_StoreJavaFX.controller.order;
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Customer;
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Clothing;
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Order;
-import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.main.MainFormLoader;
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.order.OrderFormLoader;
 import interfaces.AppCustomerService;
 import interfaces.ClothingService;
 import interfaces.OrderService;
@@ -20,10 +21,12 @@ import java.util.ResourceBundle;
 @Component
 public class OrderFormController implements Initializable {
 
-    private final FormLoader formLoader;
+
     private final ClothingService clothingService;
+    private final OrderFormLoader orderFormLoader;
     private final OrderService orderService;
     private final AppCustomerService appCustomerService;
+    private final MainFormLoader mainFormLoader;
 
     @FXML private ComboBox<Customer> cbCustomer;
     @FXML private ComboBox<Clothing> cbClothing;
@@ -31,12 +34,14 @@ public class OrderFormController implements Initializable {
     @FXML private Label lblTotal;
     @FXML private Label lblError;
 
-    public OrderFormController(FormLoader formLoader, ClothingService clothingService,
-                               OrderService orderService, AppCustomerService appCustomerService) {
-        this.formLoader = formLoader;
+    public OrderFormController(ClothingService clothingService, OrderFormLoader orderFormLoader,
+                               OrderService orderService, AppCustomerService appCustomerService, MainFormLoader mainFormLoader) {
+
         this.clothingService = clothingService;
+        this.orderFormLoader = orderFormLoader;
         this.orderService = orderService;
         this.appCustomerService = appCustomerService;
+        this.mainFormLoader = mainFormLoader;
     }
 
     @Override
@@ -129,7 +134,7 @@ public class OrderFormController implements Initializable {
 
         // 12. Сообщаем об успехе и возвращаемся на главную форму
         lblError.setText("Заказ оформлен. Итоговая сумма: " + totalCost);
-        formLoader.loadMainForm();
+        mainFormLoader.loadMainForm();
     }
 
 
@@ -137,6 +142,6 @@ public class OrderFormController implements Initializable {
 
     @FXML
     private void goToMainForm() {
-        formLoader.loadMainForm();
+        mainFormLoader.loadMainForm();
     }
 }

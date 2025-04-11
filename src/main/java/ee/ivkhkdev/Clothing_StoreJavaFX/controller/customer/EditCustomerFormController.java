@@ -2,7 +2,7 @@ package ee.ivkhkdev.Clothing_StoreJavaFX.controller.customer;
 
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Customer;
-import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.customer.EditCustomerFormLoader;
 import interfaces.AppCustomerService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 @Component
 public class EditCustomerFormController implements Initializable {
 
-    private final FormLoader formLoader;
+    private final EditCustomerFormLoader editCustomerFormLoader;
     private final AppCustomerService appCustomerService;
     private Customer editCustomer;
 
@@ -28,8 +28,9 @@ public class EditCustomerFormController implements Initializable {
     @FXML private TextField tfBalance;
     @FXML private Label lbInfo;
 
-    public EditCustomerFormController(FormLoader formLoader, AppCustomerService appCustomerService) {
-        this.formLoader = formLoader;
+    public EditCustomerFormController(EditCustomerFormLoader editCustomerFormLoader, AppCustomerService appCustomerService) {
+        this.editCustomerFormLoader = editCustomerFormLoader;
+
         this.appCustomerService = appCustomerService;
     }
 
@@ -58,13 +59,13 @@ public class EditCustomerFormController implements Initializable {
             }
             appCustomerService.add(editCustomer);
         }
-        formLoader.loadMainForm();
+        editCustomerFormLoader.loadMainForm();
 
     }
 
     @FXML
     private void goToCustomerListForm() {
-        formLoader.loadEditForm();
+        editCustomerFormLoader.loadEditForm();
 
     }
 

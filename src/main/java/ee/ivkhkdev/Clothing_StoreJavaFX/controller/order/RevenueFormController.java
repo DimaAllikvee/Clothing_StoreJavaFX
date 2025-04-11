@@ -1,6 +1,6 @@
 package ee.ivkhkdev.Clothing_StoreJavaFX.controller.order;
 
-import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.main.MainFormLoader;
 import interfaces.OrderService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -8,7 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
@@ -44,11 +43,12 @@ public class RevenueFormController implements Initializable {
     private ToggleGroup tgPeriod;
 
     private final OrderService orderService;
-    private final FormLoader formLoader;
+    private final MainFormLoader MainFormLoader;
 
-    public RevenueFormController(OrderService orderService, FormLoader formLoader) {
+    public RevenueFormController(OrderService orderService, MainFormLoader mainFormLoader) {
         this.orderService = orderService;
-        this.formLoader = formLoader;
+
+        MainFormLoader = mainFormLoader;
     }
 
     @Override
@@ -186,7 +186,7 @@ public class RevenueFormController implements Initializable {
 
     @FXML
     private void cancel() {
-        formLoader.loadMainForm();
+        MainFormLoader.loadMainForm();
     }
 
 

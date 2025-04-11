@@ -1,5 +1,5 @@
 package ee.ivkhkdev.Clothing_StoreJavaFX;
-import ee.ivkhkdev.Clothing_StoreJavaFX.tools.FormLoader;
+import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.main.MainFormLoader;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
@@ -19,8 +19,8 @@ public class ClothingStoreApp extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
-		FormLoader formLoader = applicationContext.getBean(FormLoader.class);
-		formLoader.loadLoginForm();
+		MainFormLoader mainFormLoader = applicationContext.getBean(MainFormLoader.class);
+		mainFormLoader.loadLoginForm();
 
 	}
 }
