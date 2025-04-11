@@ -2,8 +2,10 @@ package ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.main;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.ClothingStoreApp;
 import ee.ivkhkdev.Clothing_StoreJavaFX.controller.customer.ProfileFormController;
+import ee.ivkhkdev.Clothing_StoreJavaFX.model.Customer;
 import ee.ivkhkdev.Clothing_StoreJavaFX.service.AppCustomerServiceImpl;
 import ee.ivkhkdev.Clothing_StoreJavaFX.tools.SpringFXMLLoader;
+import interfaces.AppCustomerService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,9 +18,12 @@ import java.io.IOException;
 public class MenuFormLoader {
 
     private final SpringFXMLLoader springFXMLLoader;
+    private final AppCustomerService appCustomerService;
 
-    public MenuFormLoader(SpringFXMLLoader springFXMLLoader) {
+
+    public MenuFormLoader(SpringFXMLLoader springFXMLLoader, AppCustomerService appCustomerService) {
         this.springFXMLLoader = springFXMLLoader;
+        this.appCustomerService = appCustomerService;
     }
 
 
@@ -120,10 +125,15 @@ public class MenuFormLoader {
             throw new RuntimeException("Не удалось загрузить /view/customer/profileForm.fxml", e);
         }
         ProfileFormController controller = fxmlLoader.getController();
-        // Передаем текущего пользователя
-        if (AppCustomerServiceImpl.currentCustomer != null) {
-            controller.setCustomer(AppCustomerServiceImpl.currentCustomer);
+
+
+
+        Customer currentCustomer = appCustomerService.getCurrentCustomer();
+        if (currentCustomer != null) {
+            controller.setCustomer(currentCustomer);
         }
+
+
         Scene scene = new Scene(root);
         Stage primaryStage = getPrimaryStage();
         primaryStage.setScene(scene);

@@ -2,6 +2,7 @@ package ee.ivkhkdev.Clothing_StoreJavaFX.controller.main;
 
 import ee.ivkhkdev.Clothing_StoreJavaFX.service.AppCustomerServiceImpl;
 import ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.main.MenuFormLoader;
+import interfaces.AppCustomerService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +18,7 @@ public class MenuFormController implements Initializable {
 
 
     private final MenuFormLoader menuFormLoader;
+    private final AppCustomerService appCustomerService;
 
     // Меню
     @FXML private Menu mClothing;
@@ -34,9 +36,10 @@ public class MenuFormController implements Initializable {
     @FXML private MenuItem miListClothing;
     @FXML private MenuItem miPlaceOrder;
 
-    public MenuFormController(MenuFormLoader menuFormLoader) {
+    public MenuFormController(MenuFormLoader menuFormLoader, AppCustomerService appCustomerService) {
         this.menuFormLoader = menuFormLoader;
 
+        this.appCustomerService = appCustomerService;
     }
 
     @Override
@@ -45,7 +48,7 @@ public class MenuFormController implements Initializable {
     }
 
     private void initMenuVisible(){
-        if (AppCustomerServiceImpl.currentCustomer == null) {
+        if (appCustomerService.getCurrentCustomer() == null) {
             // Если никто не вошел, показываем только Вход
             mClothing.setVisible(false);
             mAdmin.setVisible(false);
@@ -64,7 +67,7 @@ public class MenuFormController implements Initializable {
         }
 
         // Если пользователь вошел, смотрим роли
-        if (AppCustomerServiceImpl.currentCustomer.getRoles().contains(AppCustomerServiceImpl.ROLES.ADMINISTRATOR.toString())) {
+        if (appCustomerService.getCurrentCustomer().getRoles().contains(AppCustomerServiceImpl.ROLES.ADMINISTRATOR.toString())) {
             // Администратор видит всё
             mClothing.setVisible(true);
             mAdmin.setVisible(true);
@@ -80,7 +83,7 @@ public class MenuFormController implements Initializable {
             miListClothing.setVisible(true);
             miPlaceOrder.setVisible(true);
 
-        } else if (AppCustomerServiceImpl.currentCustomer.getRoles().contains(AppCustomerServiceImpl.ROLES.MANAGER.toString())) {
+        } else if (appCustomerService.getCurrentCustomer().getRoles().contains(AppCustomerServiceImpl.ROLES.MANAGER.toString())) {
             // Менеджер видит товары и пользователей, но не Админ меню
             mClothing.setVisible(true);
             mAdmin.setVisible(false);
@@ -96,7 +99,7 @@ public class MenuFormController implements Initializable {
             miListClothing.setVisible(true);
             miPlaceOrder.setVisible(true);
 
-        } else if (AppCustomerServiceImpl.currentCustomer.getRoles().contains(AppCustomerServiceImpl.ROLES.USER.toString())) {
+        } else if (appCustomerService.getCurrentCustomer().getRoles().contains(AppCustomerServiceImpl.ROLES.USER.toString())) {
             // Обычный пользователь видит только список товаров, оформить заказ, профиль и выход
             mClothing.setVisible(true); // Можно оставить видимым, но скрыть ненужные пункты
             mAdmin.setVisible(false);
@@ -141,8 +144,8 @@ public class MenuFormController implements Initializable {
 
     @FXML
     private void logout(){
-        // Сбрасываем текущего пользователя
-        AppCustomerServiceImpl.currentCustomer = null;
+
+        appCustomerService.logout();
         menuFormLoader.loadLoginForm();
     }
 

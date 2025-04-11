@@ -34,26 +34,20 @@ public class LoginFormController {
             return;
         }
 
-        // Если аутентификация успешна, currentCustomer уже установлен
-        // Проверяем роль
-        if (AppCustomerServiceImpl.currentCustomer.getRoles().contains("ADMINISTRATOR")
-                || AppCustomerServiceImpl.currentCustomer.getRoles().contains("MANAGER")) {
-            // Открываем MainForm (где таблица)
+        // Получаем текущего пользователя через метод getCurrentCustomer() вместо обращения к статическому полю
+        if (customerService.getCurrentCustomer().getRoles().contains("ADMINISTRATOR")
+                || customerService.getCurrentCustomer().getRoles().contains("MANAGER")) {
+            // Если пользователь имеет роль администратора или менеджера,
+            // открываем основное окно с таблицей (MainForm)
             loginFormLoader.loadMainForm();
         } else {
-            // Иначе считаем, что это USER
+            // Иначе открываем каталог (CatalogForm) для обычного пользователя
             loginFormLoader.loadCatalogForm();
         }
-
-
     }
 
     @FXML
-    private void showRegistrationForm(){
+    private void showRegistrationForm() {
         loginFormLoader.loadRegistrationForm();
     }
-
-
 }
-
-

@@ -1,9 +1,10 @@
 package ee.ivkhkdev.Clothing_StoreJavaFX.tools.loaders.catalog;
 
-import ee.ivkhkdev.Clothing_StoreJavaFX.ClothingStoreApp;
 import ee.ivkhkdev.Clothing_StoreJavaFX.controller.customer.ProfileFormController;
-import ee.ivkhkdev.Clothing_StoreJavaFX.service.AppCustomerServiceImpl;
+import ee.ivkhkdev.Clothing_StoreJavaFX.model.Clothing;
+import ee.ivkhkdev.Clothing_StoreJavaFX.model.Customer;
 import ee.ivkhkdev.Clothing_StoreJavaFX.tools.SpringFXMLLoader;
+import interfaces.AppCustomerService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,14 +15,17 @@ import java.io.IOException;
 
 @Component
 public class CatalogFormLoader {
-    private final SpringFXMLLoader springFXMLLoader;
 
-    public CatalogFormLoader(SpringFXMLLoader springFXMLLoader) {
+    private final SpringFXMLLoader springFXMLLoader;
+    private final AppCustomerService appCustomerService; // Внедрение сервиса для текущего покупателя
+
+    public CatalogFormLoader(SpringFXMLLoader springFXMLLoader, AppCustomerService appCustomerService) {
         this.springFXMLLoader = springFXMLLoader;
+        this.appCustomerService = appCustomerService;
     }
 
     private Stage getPrimaryStage() {
-        return ClothingStoreApp.primaryStage;
+        return ee.ivkhkdev.Clothing_StoreJavaFX.ClothingStoreApp.primaryStage;
     }
 
     public void loadMainFormCatalog() {
@@ -30,12 +34,12 @@ public class CatalogFormLoader {
         try {
             root = fxmlLoader.load();
         } catch (IOException e) {
-            throw new RuntimeException("Не удалось загрузить /main/mainFormCatalog.fxml", e);
+            throw new RuntimeException("Не удалось загрузить /view/catalog/CatalogForm.fxml", e);
         }
         Scene scene = new Scene(root);
         Stage primaryStage = getPrimaryStage();
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Clothing_StoreJavaFX магазин верхней одежды");
+        primaryStage.setTitle("Каталог одежды");
         primaryStage.centerOnScreen();
         primaryStage.show();
     }
@@ -49,9 +53,9 @@ public class CatalogFormLoader {
             throw new RuntimeException("Не удалось загрузить /view/customer/profileForm.fxml", e);
         }
         ProfileFormController controller = fxmlLoader.getController();
-        // Передаем текущего пользователя
-        if (AppCustomerServiceImpl.currentCustomer != null) {
-            controller.setCustomer(AppCustomerServiceImpl.currentCustomer);
+        Customer currentCustomer = appCustomerService.getCurrentCustomer();
+        if (currentCustomer != null) {
+            controller.setCustomer(currentCustomer);
         }
         Scene scene = new Scene(root);
         Stage primaryStage = getPrimaryStage();
@@ -61,19 +65,19 @@ public class CatalogFormLoader {
         primaryStage.show();
     }
 
-    public void loadLoginForm(){
+    public void loadLoginForm() {
         FXMLLoader fxmlLoader = springFXMLLoader.load("/view/customer/loginForm.fxml");
-        Parent root = null;
+        Parent root;
         try {
             root = fxmlLoader.load();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Не удалось загрузить /view/customer/loginForm.fxml", e);
         }
         Scene scene = new Scene(root);
-        getPrimaryStage().setScene(scene);
-        getPrimaryStage().setTitle("Clothing_Store вход пользователя");
-        getPrimaryStage().centerOnScreen();
-        getPrimaryStage().show();
+        Stage primaryStage = getPrimaryStage();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Clothing_Store вход пользователя");
+        primaryStage.centerOnScreen();
+        primaryStage.show();
     }
-
 }

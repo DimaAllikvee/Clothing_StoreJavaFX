@@ -1,6 +1,6 @@
 package ee.ivkhkdev.Clothing_StoreJavaFX.service;
 
-
+import ee.ivkhkdev.Clothing_StoreJavaFX.context.CurrentCustomerContext;
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Customer;
 import ee.ivkhkdev.Clothing_StoreJavaFX.repository.CustomerRepository;
 import interfaces.AppCustomerService;
@@ -13,17 +13,17 @@ import java.util.Optional;
 
 @Service
 public class AppCustomerServiceImpl implements AppCustomerService {
-    public static Customer currentCustomer;
 
     public enum ROLES {
         USER, MANAGER, ADMINISTRATOR
     }
 
-    //Избавится от статического поля на динамический и также сделать так чтобы администратор мог менять роль зарегестрованы пользывателем
-    //Сделать менеджера
     private final CustomerRepository repository;
-    public AppCustomerServiceImpl(CustomerRepository repository) {
+    private final CurrentCustomerContext currentCustomerContext;
+
+    public AppCustomerServiceImpl(CustomerRepository repository, CurrentCustomerContext currentCustomerContext) {
         this.repository = repository;
+        this.currentCustomerContext = currentCustomerContext;
         initSuperUser();
     }
 
@@ -45,7 +45,6 @@ public class AppCustomerServiceImpl implements AppCustomerService {
 
     @Override
     public Optional<Customer> add(Customer user) {
-
         if (user.getId() != null) {
             return Optional.of(repository.save(user));
         }
@@ -56,19 +55,18 @@ public class AppCustomerServiceImpl implements AppCustomerService {
         return Optional.of(repository.save(user));
     }
 
-
-
     @Override
     public boolean authentication(String username, String password) {
         Optional<Customer> optionalAppUser = repository.findByUsername(username);
-        if(optionalAppUser.isEmpty()) {
+        if (optionalAppUser.isEmpty()) {
             return false;
         }
         Customer loginUser = optionalAppUser.get();
-        if(!loginUser.getPassword().equals(password)) {
+        if (!loginUser.getPassword().equals(password)) {
             return false;
         }
-        currentCustomer = loginUser;
+        // Устанавливаем текущего пользователя через контекст вместо статического поля
+        currentCustomerContext.setCurrentCustomer(loginUser);
         return true;
     }
 
@@ -80,10 +78,12 @@ public class AppCustomerServiceImpl implements AppCustomerService {
 
     @Override
     public Customer getCurrentCustomer() {
-        return currentCustomer;
+        return currentCustomerContext.getCurrentCustomer();
     }
 
-
-
+    @Override
+    public void logout() {
+        currentCustomerContext.setCurrentCustomer(null);
+    }
 
 }

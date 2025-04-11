@@ -5,6 +5,7 @@ import ee.ivkhkdev.Clothing_StoreJavaFX.controller.profile.ChangePasswordFormCon
 import ee.ivkhkdev.Clothing_StoreJavaFX.model.Customer;
 import ee.ivkhkdev.Clothing_StoreJavaFX.service.AppCustomerServiceImpl;
 import ee.ivkhkdev.Clothing_StoreJavaFX.tools.SpringFXMLLoader;
+import interfaces.AppCustomerService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,9 +17,11 @@ import java.io.IOException;
 @Component
 public class ProfileFormLoader {
     private final SpringFXMLLoader springFXMLLoader;
+    private final AppCustomerService appCustomerService;
 
-    public ProfileFormLoader(SpringFXMLLoader springFXMLLoader) {
+    public ProfileFormLoader(SpringFXMLLoader springFXMLLoader, AppCustomerService appCustomerService) {
         this.springFXMLLoader = springFXMLLoader;
+        this.appCustomerService = appCustomerService;
     }
 
     private Stage getPrimaryStage() {
@@ -36,8 +39,9 @@ public class ProfileFormLoader {
         // Получаем контроллер формы изменения пароля
         ChangePasswordFormController controller = fxmlLoader.getController();
         // Передаём текущего пользователя, если он установлен
-        if (AppCustomerServiceImpl.currentCustomer != null) {
-            controller.setCustomer(AppCustomerServiceImpl.currentCustomer);
+        Customer currentCustomer = appCustomerService.getCurrentCustomer();
+        if (currentCustomer != null) {
+            controller.setCustomer(currentCustomer);
         }
         Scene scene = new Scene(root);
         Stage primaryStage = getPrimaryStage();
