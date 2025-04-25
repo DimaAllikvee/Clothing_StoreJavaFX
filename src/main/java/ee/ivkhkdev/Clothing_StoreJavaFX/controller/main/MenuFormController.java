@@ -184,4 +184,10 @@ public class MenuFormController implements Initializable {
         menuFormLoader.loadRatingChartForm();
     }
 
+    @FXML
+    private void showChatWindow() {
+        menuFormLoader.loadChatWindow();
+    }
+
+
 }

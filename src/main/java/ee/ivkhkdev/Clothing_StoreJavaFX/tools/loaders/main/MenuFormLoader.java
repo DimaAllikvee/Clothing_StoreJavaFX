@@ -206,6 +206,22 @@ public class MenuFormLoader {
         primaryStage.show();
     }
 
+    public void loadChatWindow() {
+        FXMLLoader fxmlLoader = springFXMLLoader.load("/view/chat/chat.fxml");
+        Parent root;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException("Не удалось загрузить ChatForm.fxml", e);
+        }
+        Scene scene = new Scene(root);
+        Stage primaryStage = getPrimaryStage();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Чат");
+        primaryStage.centerOnScreen();
+        primaryStage.show();
+    }
+
     private Stage getPrimaryStage() {
         return ClothingStoreApp.primaryStage;
     }

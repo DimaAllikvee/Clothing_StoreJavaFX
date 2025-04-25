@@ -5,8 +5,12 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="vbMenuFormRoot" prefHeight="23.0" prefWidth="599.0" styleClass="menu-root"
-      xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+<VBox fx:id="vbMenuFormRoot"
+      prefHeight="23.0"
+      prefWidth="599.0"
+      styleClass="menu-root"
+      xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="ee.ivkhkdev.Clothing_StoreJavaFX.controller.main.MenuFormController">
 
     <stylesheets>
@@ -16,6 +20,7 @@
     <children>
         <MenuBar prefHeight="0.0" prefWidth="579.0" styleClass="menu-bar">
             <menus>
+                <!-- Раздел «Товары» -->
                 <Menu fx:id="mClothing" mnemonicParsing="false" styleClass="menu-item" text="Товары">
                     <items>
                         <MenuItem fx:id="miAddClothing"
@@ -34,11 +39,25 @@
                                   text="Список одежды" />
                     </items>
                 </Menu>
+
+                <!-- Раздел «Покупатель» -->
                 <Menu fx:id="mUsers" mnemonicParsing="false" styleClass="menu-item" text="Покупатель">
                     <items>
-                        <MenuItem fx:id="miEnter" mnemonicParsing="false" onAction="#showLoginForm" styleClass="menu-item-sub" text="Вход" />
-                        <MenuItem fx:id="miLogout" mnemonicParsing="false" onAction="#logout" styleClass="menu-item-sub" text="Выход" />
-                        <MenuItem fx:id="miProfile" mnemonicParsing="false" onAction="#showProfileForm" styleClass="menu-item-sub" text="Профиль" />
+                        <MenuItem fx:id="miEnter"
+                                  mnemonicParsing="false"
+                                  onAction="#showLoginForm"
+                                  styleClass="menu-item-sub"
+                                  text="Вход" />
+                        <MenuItem fx:id="miLogout"
+                                  mnemonicParsing="false"
+                                  onAction="#logout"
+                                  styleClass="menu-item-sub"
+                                  text="Выход" />
+                        <MenuItem fx:id="miProfile"
+                                  mnemonicParsing="false"
+                                  onAction="#showProfileForm"
+                                  styleClass="menu-item-sub"
+                                  text="Профиль" />
                         <MenuItem fx:id="miAddCustomer"
                                   mnemonicParsing="false"
                                   onAction="#showAddCustomerForm"
@@ -54,22 +73,35 @@
                                   onAction="#showOrderForm"
                                   styleClass="menu-item-sub"
                                   text="Оформить заказ" />
-                        <MenuItem fx:id="mishowCatalogForm"
-                                    mnemonicParsing="false"
-                                    onAction="#showCatalogForm"
-                                    styleClass="menu-item-sub"
-                                    text="Каталог" />
-
+                        <MenuItem fx:id="miShowCatalog"
+                                  mnemonicParsing="false"
+                                  onAction="#showCatalogForm"
+                                  styleClass="menu-item-sub"
+                                  text="Каталог" />
+                        <!-- Новый пункт «Чат» -->
+                        <MenuItem fx:id="miChat"
+                                  mnemonicParsing="false"
+                                  onAction="#showChatWindow"
+                                  styleClass="menu-item-sub"
+                                  text="Чат" />
                     </items>
                 </Menu>
+
+                <!-- Раздел «Administrator» -->
                 <Menu fx:id="mAdmin" mnemonicParsing="false" styleClass="menu-item" text="Administrator">
                     <items>
-                        <MenuItem text="Доход магазина" onAction="#showRevenueForm" styleClass="menu-item-sub"/>
-
-                        <MenuItem text="Рейтинг товара" onAction="#showRatingForm" styleClass="menu-item-sub"/>
+                        <MenuItem fx:id="miRevenue"
+                                  mnemonicParsing="false"
+                                  onAction="#showRevenueForm"
+                                  styleClass="menu-item-sub"
+                                  text="Доход магазина" />
+                        <MenuItem fx:id="miRating"
+                                  mnemonicParsing="false"
+                                  onAction="#showRatingForm"
+                                  styleClass="menu-item-sub"
+                                  text="Рейтинг товара" />
                     </items>
                 </Menu>
-
             </menus>
         </MenuBar>
     </children>

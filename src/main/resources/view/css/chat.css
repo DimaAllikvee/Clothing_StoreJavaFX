@@ -1,0 +1,73 @@
+/* Корневой фон */
+.chat-root {
+    -fx-background-color: #f0f2f5;
+}
+
+/* Заголовок */
+.chat-header {
+    -fx-background-color: white;
+    -fx-padding: 10 15 10 15;
+    -fx-spacing: 10;
+    -fx-alignment: center-left;
+    -fx-border-color: #ddd;
+    -fx-border-width: 0 0 1 0;
+}
+
+/* Кнопка «Назад» */
+.chat-back-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #333;
+    -fx-font-size: 14px;
+}
+.chat-back-button:hover {
+    -fx-background-color: #e6e6e6;
+}
+
+/* Заголовок чата */
+.chat-title {
+    -fx-font-size: 18px;
+    -fx-text-fill: #333;
+    -fx-font-weight: bold;
+}
+
+/* Область сообщений */
+.chat-messages {
+    -fx-background-color: white;
+    -fx-padding: 10;
+    -fx-font-size: 14px;
+    -fx-border-color: #ddd;
+    -fx-border-width: 1;
+    -fx-background-insets: 0;
+}
+
+/* Нижняя панель ввода */
+.chat-input-bar {
+    -fx-background-color: white;
+    -fx-border-color: #ddd;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 10 15 10 15;
+    -fx-alignment: center;
+}
+
+/* Поле ввода */
+.chat-input {
+    -fx-background-color: #fafafa;
+    -fx-padding: 8;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-font-size: 14px;
+}
+
+/* Кнопка отправки */
+.chat-send-button {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 0 15 0 15;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+.chat-send-button:hover {
+    -fx-background-color: #357ab8;
+}
