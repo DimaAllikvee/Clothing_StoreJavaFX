@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -12,54 +11,63 @@
 <?import javafx.scene.text.Font?>
 <?import java.net.URL?>
 
-<VBox fx:id="vbCustomerFormRoot" prefHeight="380.0" prefWidth="630.0"
+<VBox fx:id="vbCustomerFormRoot" prefHeight="450.0" prefWidth="630.0"
       xmlns="http://javafx.com/javafx/23.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="ee.ivkhkdev.Clothing_StoreJavaFX.controller.customer.EditCustomerFormController"
       alignment="CENTER" spacing="20" styleClass="editcustomer-root">
 
-    <!-- Подключаем CSS-файл -->
     <stylesheets>
         <URL value="@../css/editCustomer.css"/>
     </stylesheets>
 
     <!-- Заголовок формы -->
     <Label text="Редактирование покупателя" styleClass="editcustomer-title">
-        <font>
-            <Font size="20.0"/>
-        </font>
+        <font><Font size="20.0"/></font>
     </Label>
 
-    <!-- Основной контейнер для полей ввода с использованием GridPane -->
+    <!-- Основной контейнер для полей ввода -->
     <GridPane hgap="15" vgap="15" alignment="CENTER" styleClass="editcustomer-grid">
-        <padding>
-            <Insets top="10" right="20" bottom="10" left="20"/>
-        </padding>
+        <padding><Insets top="10" right="20" bottom="10" left="20"/></padding>
 
         <!-- Имя -->
-        <Label text="Имя:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="editcustomer-label"/>
-        <TextField fx:id="tfFirstName" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="editcustomer-field"/>
+        <Label text="Имя:"       GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="editcustomer-label"/>
+        <TextField fx:id="tfFirstName" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="editcustomer-field"/>
+
         <!-- Фамилия -->
-        <Label text="Фамилия:" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="editcustomer-label"/>
-        <TextField fx:id="tfLastName" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="editcustomer-field"/>
+        <Label text="Фамилия:"  GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="editcustomer-label"/>
+        <TextField fx:id="tfLastName"  GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="editcustomer-field"/>
+
         <!-- Логин -->
-        <Label text="Логин:" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="editcustomer-label"/>
-        <TextField fx:id="tfUsername" GridPane.rowIndex="3" GridPane.columnIndex="1" styleClass="editcustomer-field"/>
+        <Label text="Логин:"     GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="editcustomer-label"/>
+        <TextField fx:id="tfUsername" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="editcustomer-field"/>
+
         <!-- Пароль -->
-        <Label text="Пароль:" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="editcustomer-label"/>
-        <PasswordField fx:id="pfPassword" GridPane.rowIndex="4" GridPane.columnIndex="1" styleClass="editcustomer-field"/>
+        <Label text="Пароль:"    GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="editcustomer-label"/>
+        <PasswordField fx:id="pfPassword" GridPane.rowIndex="3" GridPane.columnIndex="1" styleClass="editcustomer-field"/>
+
         <!-- Баланс -->
-        <Label text="Баланс:" GridPane.rowIndex="5" GridPane.columnIndex="0" styleClass="editcustomer-label"/>
-        <TextField fx:id="tfBalance" GridPane.rowIndex="5" GridPane.columnIndex="1" styleClass="editcustomer-field"/>
+        <Label text="Баланс:"    GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="editcustomer-label"/>
+        <TextField fx:id="tfBalance" GridPane.rowIndex="4" GridPane.columnIndex="1" styleClass="editcustomer-field"/>
     </GridPane>
 
-    <!-- Блок с кнопками -->
-    <HBox spacing="20" alignment="CENTER" styleClass="editcustomer-buttons">
-        <Button text="Сохранить" onAction="#goEdit" styleClass="editcustomer-button"/>
-        <Button text="Возврат на список покупателей" onAction="#goToCustomerListForm" styleClass="editcustomer-button"/>
+    <!-- Секция управления ролями -->
+    <Label text="Роли пользователя:" styleClass="editcustomer-title"/>
+    <HBox spacing="15" alignment="CENTER">
+        <CheckBox fx:id="chkUser"    text="USER"          styleClass="editcustomer-checkbox"/>
+        <CheckBox fx:id="chkManager" text="MANAGER"       styleClass="editcustomer-checkbox"/>
+        <CheckBox fx:id="chkAdmin"   text="ADMINISTRATOR" styleClass="editcustomer-checkbox"/>
     </HBox>
 
-    <!-- Общие отступы у корневого контейнера -->
+
+    <Label fx:id="lbInfo" textFill="red"/>
+
+    <!-- Кнопки сохранения/отката -->
+    <HBox spacing="20" alignment="CENTER" styleClass="editcustomer-buttons">
+        <Button fx:id="btnSave" text="Сохранить" onAction="#goEdit" styleClass="editcustomer-button"/>
+        <Button text="Отмена"    onAction="#goToCustomerListForm" styleClass="editcustomer-button"/>
+    </HBox>
+
     <padding>
         <Insets top="20" right="30" bottom="30" left="30"/>
     </padding>

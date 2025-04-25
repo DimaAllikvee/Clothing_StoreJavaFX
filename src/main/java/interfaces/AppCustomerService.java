@@ -10,5 +10,7 @@ public interface AppCustomerService extends AppService<Customer>  {
     ObservableList<Customer> getListCustomers();
     void logout();
     Customer getCurrentCustomer();
+    void addRole(Customer user, String role);
+    void removeRole(Customer user, String role);
 
 }

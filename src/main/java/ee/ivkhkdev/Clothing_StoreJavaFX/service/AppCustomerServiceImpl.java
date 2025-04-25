@@ -82,6 +82,23 @@ public class AppCustomerServiceImpl implements AppCustomerService {
     }
 
     @Override
+    public void addRole(Customer user, String role) {
+        if (!user.getRoles().contains(role)) {
+            user.getRoles().add(role);
+            repository.save(user);
+        }
+    }
+
+
+    @Override
+    public void removeRole(Customer user, String role) {
+        if (user.getRoles().contains(role)) {
+            user.getRoles().remove(role);
+            repository.save(user);
+        }
+    }
+
+    @Override
     public void logout() {
         currentCustomerContext.setCurrentCustomer(null);
     }
