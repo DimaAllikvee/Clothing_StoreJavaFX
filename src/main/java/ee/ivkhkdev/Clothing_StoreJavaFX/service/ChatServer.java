@@ -1,17 +1,40 @@
+
 package ee.ivkhkdev.Clothing_StoreJavaFX.service;
 
-import java.io.*;
-import java.net.*;
-import java.util.*;
-import java.util.concurrent.*;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Service;
 
-/**
- * Простой сокет-сервер для чата.
- */
+import java.io.*;
+import java.net.BindException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+
+@Service
 public class ChatServer {
+    private final ChatMessageService messageService;
     private ServerSocket serverSocket;
     private final Set<ClientHandler> clients = ConcurrentHashMap.newKeySet();
-    private volatile boolean running = false;
+    private volatile boolean running;
+
+    public ChatServer(ChatMessageService messageService) {
+        this.messageService = messageService;
+    }
+
+    /** Попытаться запустить сервер при старте приложения */
+    @EventListener(ApplicationReadyEvent.class)
+    public void startServer() {
+        try {
+            start(12345);
+        } catch (BindException e) {
+            // порт уже занят — считаем, что сервер уже запущен где-то ещё
+            System.out.println("ChatServer: порт 12345 уже занят, не запускаю второй сервер");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void start(int port) throws IOException {
         serverSocket = new ServerSocket(port);
@@ -19,7 +42,6 @@ public class ChatServer {
         System.out.println("ChatServer started on port " + port);
         System.out.println("Нажмите Enter для остановки...");
 
-        // Принимаем новых клиентов
         new Thread(() -> {
             while (running) {
                 try {
@@ -34,20 +56,25 @@ public class ChatServer {
         }, "ChatServer-Accept").start();
     }
 
-    public void stop() throws IOException {
-        running = false;
-        serverSocket.close();
-        for (ClientHandler c : clients) c.close();
-        clients.clear();
-        System.out.println("ChatServer stopped");
-    }
+    public void broadcast(String raw, ClientHandler sender) {
+        System.out.println("Received: " + raw);
+        // сохраняем в БД
+        String senderName;
+        String content;
+        if (raw.startsWith("***")) {
+            senderName = "SYSTEM";
+            content = raw;
+        } else {
+            int idx = raw.indexOf(':');
+            senderName = raw.substring(0, idx).trim();
+            content = raw.substring(idx + 1).trim();
+        }
+        messageService.save(senderName, content);
 
-    public void broadcast(String message, ClientHandler sender) {
-        // Каждое полученное сообщение логируем отдельно
-        System.out.println("Received: " + message);
+        // рассылка всем остальным
         for (ClientHandler c : clients) {
             if (c != sender) {
-                c.send(message);
+                c.send(raw);
             }
         }
     }
@@ -92,10 +119,11 @@ public class ChatServer {
         }
     }
 
-    public static void main(String[] args) throws Exception {
-        ChatServer server = new ChatServer();
-        server.start(12345);
-        System.in.read();
-        server.stop();
+    public void stop() throws IOException {
+        running = false;
+        serverSocket.close();
+        clients.forEach(ClientHandler::close);
+        clients.clear();
+        System.out.println("ChatServer stopped");
     }
 }
