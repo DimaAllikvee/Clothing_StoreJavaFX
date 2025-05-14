@@ -2,47 +2,51 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-
+<?import javafx.scene.layout.VBox?>
 <?import java.net.URL?>
+
 <BorderPane xmlns="http://javafx.com/javafx/24.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="ee.ivkhkdev.Clothing_StoreJavaFX.controller.chat.ChatController"
-            prefWidth="600" prefHeight="400"
+            prefWidth="600" prefHeight="500"
             styleClass="chat-root">
 
-    <!-- Подключаем CSS -->
     <stylesheets>
         <URL value="@../css/chat.css"/>
     </stylesheets>
 
-    <!-- Верхняя панель с кнопкой «Назад» и заголовком -->
+    <!-- Верхняя панель -->
     <top>
         <HBox styleClass="chat-header">
             <Button text="← Назад"
-                    onAction="#onBack"
-                    styleClass="chat-back-button"/>
-            <Label text="Чат с магазином" styleClass="chat-title"/>
+                    styleClass="chat-back-button"
+                    onAction="#onBack"/>
+            <Label fx:id="lblTitle"
+                   text="Общий чат"
+                   styleClass="chat-title"/>
         </HBox>
     </top>
 
-    <!-- Основная область: логи -->
+    <!-- Логи: ScrollPane с VBox внутри -->
     <center>
-        <TextArea fx:id="taMessages"
-                  editable="false"
-                  wrapText="true"
-                  styleClass="chat-messages"/>
+        <ScrollPane fx:id="scrollPane" fitToWidth="true" styleClass="chat-scroll">
+            <content>
+                <VBox fx:id="messagesContainer" spacing="10">
+                    <padding>
+                        <Insets top="12" right="12" bottom="12" left="12"/>
+                    </padding>
+                </VBox>
+            </content>
+        </ScrollPane>
     </center>
 
-    <!-- Нижняя панель ввода -->
+    <!-- Ввод -->
     <bottom>
-        <HBox spacing="8" styleClass="chat-input-bar">
-            <padding>
-                <Insets top="10" right="10" bottom="10" left="10"/>
-            </padding>
+        <HBox spacing="10" styleClass="chat-input-bar">
             <TextField fx:id="tfInput"
                        HBox.hgrow="ALWAYS"
                        promptText="Введите сообщение..."
